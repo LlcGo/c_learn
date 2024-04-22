@@ -9,8 +9,6 @@ int add(int x, int y)
   return x+y;
 }
 
-
-
 //int (*AFunction(const char * ch, int (*p)(int,int)))(int a,int b)
 FUNC AFunction(const char * ch,int (*p)(int,int)) 
  {
