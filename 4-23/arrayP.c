@@ -23,6 +23,19 @@ int main()
      // *pp取出地址 + i 解引用；
      printf("数组指针%d\n",*(*pp+i));  
   }
+
+  // 二维指针
+  int j;
+  int iarr[2][3] = {{1,2,3},{4,5,6}};
+  // 二维数组默认指向地址
+  int (*iap)[3] = iarr;
+  for(i = 0; i < 2; i++)
+  {
+    for(j = 0; j < 3; j++)
+    {
+      printf("二维数组使用数组指针遍历=%d\n",*((*iap+i)+j));
+    }
+  }
   
   return 0;
 }
