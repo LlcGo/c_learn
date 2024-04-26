@@ -11,8 +11,8 @@ int main(void)
   Item temp;
   
   /*初始化*/
-  InitList(&movie);
-  if(ListIsiFull(&movie))
+  InitList(&movies);
+  if(ListIsFull(&movies))
   {
     fprintf(stderr,"没有内存了");
   }
@@ -30,7 +30,7 @@ int main(void)
        fprintf(stderr,"没有内存了");
        break;
     } 
-    if(ListIsFull(&moive))
+    if(ListIsFull(&movies))
     {
        puts("List满了");
        break;
@@ -39,17 +39,17 @@ int main(void)
   } 
   
   /*显示*/
-  if (ListIsEmpty(&movie))
+  if (ListIsEmpty(&movies))
      printf("NO Data");
   else
   {
      printf("所有影视:\n");
-     Traverse(&moive,showmovies);
+     Traverse(&movies,showmovies);
   }
-  printf("您一共输入了%d电影\n",ListItemCount(&movie));
+  printf("您一共输入了%d电影\n",ListItemCount(&movies));
   
   /*清理内存*/
-  FreeList(&movie);
+  FreeList(&movies);
   printf("Bye!\n");
   return 0; 
 }

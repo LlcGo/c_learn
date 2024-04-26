@@ -51,7 +51,7 @@ bool AddItem(Item item,List * plist)
   pnew = (Node*)malloc(sizeof(Node));
   if(pnew == NULL)
   {
-     return false
+     return false;
   }
   
   CopyToNode(item,pnew);
@@ -70,7 +70,7 @@ bool AddItem(Item item,List * plist)
 }
 
 /*把函数作用与链表中的每一项 遍历显示链表*/
-void Traverse(const List * plist,viod(*pfun)(Item item))
+void Traverse(const List * plist,void(*pfun)(Item item))
 {
   Node * pnode = *plist;
   while(pnode != NULL)
@@ -84,9 +84,9 @@ void Traverse(const List * plist,viod(*pfun)(Item item))
 void FreeList(List * plist)
 {
   Node * temp;
-  while(temp != NULL)
+  while(*plist != NULL)
   {
-    temp = *plist;
+    temp = (*plist)->next;
     free(temp);
     *plist = temp;     
   } 

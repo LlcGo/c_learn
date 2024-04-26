@@ -1,5 +1,6 @@
-#ifndef LIST_H
-#define LIST_Hi
+#ifndef LIST_H_
+   #define LIST_H_
+#endif
 #include <stdbool.h> /*c99特性*/
 
 /*特定程序声明*/
@@ -21,7 +22,7 @@ typedef struct node
    struct node * next;
 }Node;
 
-typedef Node * list;
+typedef Node * List;
 
 /*函数原型*/
 
@@ -41,7 +42,7 @@ unsigned int ListItemCount(const List * plist);
 bool AddItem(Item item,List * plist);
 
 /*把函数作用与链表中的每一项 遍历显示链表*/
-void Traverse(const List * plist,viod(*pfun)(Item item));
+void Traverse(const List * plist,void(*pfun)(Item item));
 
 /*释放内存*/
 void FreeList(List * plist);
