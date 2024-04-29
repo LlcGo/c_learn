@@ -57,9 +57,10 @@ int goodInstert(Node **linkp,int value)
     new = (Node*)malloc(sizeof(Node*));
     if(new == NULL)
     {
-       return 0;
+       return 1;
     }
     new->value = value;
     new->link = current;  
-    *linkp = new;      
+    *linkp = new; 
+    return 0     
 }
