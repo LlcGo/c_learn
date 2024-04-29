@@ -61,7 +61,7 @@ int d_substr(char * str,const char *substr)
         {
 	   while( *str != '\0' )
             *tmp++ = *str++;
-	    *tmp = '\0';//此处要加'\0'，把后面的垃圾信息给截掉
+	  *tmp = '\0';//此处要加'\0'，把后面的垃圾信息给截掉
             return 1;
         }
       }
