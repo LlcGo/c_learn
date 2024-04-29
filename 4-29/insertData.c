@@ -5,7 +5,7 @@ typedef struct Node {
      int value;
 } Node;
 
-int insert(Node * current, int value);
+int insert(Node ** current, int value);
 
 int main(void)
 {
@@ -14,22 +14,31 @@ int main(void)
 }
 
 
-int insert(Node * current, int value)
+// 为了方便再插入头节点的时候操作所以使用指向头节点指针的指针
+int insert(Node **rootp, int value)
 {
       Node * node;
       Node * pre;
       Node * new
-      node = current;
-      while(node->value > value)
+      node = *rootp;
+      while(node != NULL && node->value < value)
       {
         pre = node;
         node = node->next;       
       } 
       new = (Node *)malloc(sizeof(Node *));
       if(new == NULL)
-           return 0;
+          return 0;
+      // 要插入头节点之前 
       new->value = value;
-      pre->next = new;
       new->next = node;
+      if(pre == NULL)
+      {
+            *rootp->next = new;
+      }
+      else
+      {          
+      pre->next = new;
+      }
       return 1;         
 }
