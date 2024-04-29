@@ -34,7 +34,8 @@ int insert(Node **rootp, int value)
       new->next = node;
       if(pre == NULL)
       {
-            *rootp->next = new;
+       // 头指针 不需要有next直接指向 第一个节点
+            *rootp = new;
       }
       else
       {          
