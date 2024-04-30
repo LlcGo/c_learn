@@ -56,13 +56,12 @@ void printfNode(Node * node)
 
 void removeL(Node * node)
 {
-  Node p,q;
-  p = (*node)->next;
+  Node p;
   while(p)
   {
-   q = p->next;
+   p = (*node)->next;
+   (*node)->next = p->next;
    free(p);
-   p = q;
   }
   (*node)->next = NULL; 
 }
