@@ -49,3 +49,4 @@ int dll_insert(Node * rootp,int value)
         rootp->bwd = newNode; 
   return 1;
 }
+}
