@@ -12,6 +12,7 @@ typedef struct Node0 * Node;
 void createLinked(Node * node ,int value);
 void printfNode(Node * node);
 void removeL(Node * node);
+void removeL2(Node * node);
 
 int main(void)
 {
@@ -66,3 +67,18 @@ void removeL(Node * node)
   }
   (*node)->next = NULL; 
 }
+
+void removeL2(Node * node)
+{
+  Node  p,c;
+  p = (*node)->next;
+  while(p)
+  {
+   printf("开删\n");
+   c = p->next;
+   free(c);
+   p = c;
+  }
+  (*node)->next = NULL;
+}
+
