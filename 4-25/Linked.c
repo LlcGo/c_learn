@@ -52,13 +52,14 @@ void printfBook(struct Book * book)
    }  
 }
 
-void freeBook(struct Book * book)
+void freeBook(struct Book ** book)
 {
- 
-  while(book != NULL)
+  struct Book *temp;
+  while(*book != NULL)
   {
-    free(book);
-    book = book->book;
+    temp = *book;
+    *book = (*book)->book;
+    free(temp);
   }    
 }
 
@@ -85,6 +86,6 @@ int main()
     if(c == 'Y'){
      printfBook(book);
     }
-   freeBook(book);
+   freeBook(&book);
   return 0;
 }

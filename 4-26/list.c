@@ -41,6 +41,7 @@ unsigned int ListItemCount(const List * plist)
     ++count;
     pnode = pnode->next; /*指向下一个节点*/ 
   }
+  return count;
 }
 
 /*链表末尾添加项*/
