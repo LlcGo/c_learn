@@ -56,10 +56,10 @@ void printfNode(Node * node)
 
 void removeL(Node * node)
 {
-  Node p;
-  while(p)
+  Node  p;
+  while((*node)->next)
   {
-   printf("开删\n")
+   printf("开删\n");
    p = (*node)->next;
    (*node)->next = p->next;
    free(p);
