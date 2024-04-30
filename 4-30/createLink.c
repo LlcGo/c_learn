@@ -59,6 +59,7 @@ void removeL(Node * node)
   Node p;
   while(p)
   {
+   printf("开删\n")
    p = (*node)->next;
    (*node)->next = p->next;
    free(p);
