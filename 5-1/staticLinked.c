@@ -10,6 +10,8 @@ typedef struct {
 int InitList(SLinkList space);
 int deleteList(SLinkList L, int i);
 int ListInsert(SLinkList L, int i, int e);
+int LsitLength(SLinkList L);
+void Free_SSL(SLinkList space,int k);
 
 
 int main(void)
@@ -107,3 +109,16 @@ void Free_SSL(SLinkList space,int k)
     spcae[k].cur = space[o].cur;
     space[0].cur =k;
 }
+
+int LsitLength(SLinkList L)
+{
+  int j = 0;
+  int i = L[MAXSIZE-1].cur;
+  while(i)
+  {
+    i=L[i].cur;
+    j++;
+  }
+  return j;
+}
+
