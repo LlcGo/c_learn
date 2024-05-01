@@ -112,37 +112,6 @@ List * searchList(List * list,int e)
     return tmp;      
 }
 
-//int dll_inser(List * head,List * rear,int value)
-//{
-//   register List * this;
-//   register List * next;
-//   register List * new;
-//   for(this = head;(next = this->fwd) != NULL;this = next)
-//   {
-//     if(value == next->value)
-//        return 0;
-//     if(next->value > value)
-//         break;
-//   } 
-//   new = (List*)malloc(sizeof(List));
-//   if(new == NULL)
-//   {   
-//     return -1;
-//   }
-//   new->value = value;
- //  if(this == head)
- //     head = new;
- //  else
- //     this->fwd = new;
-
-//   if(head == NULL || next == NULL)
-//     rear = new;
-//   else
-//      next->bwd = new;
-//   new->fwd = next;
-//  new->bwd = this; 
-//   return 0;
-//}
 
 
 List * reverse(List * first)
