@@ -20,8 +20,7 @@ int main(void)
    printfList(&list);
    count(&list,&count1);
    printf("数量->%d\n",count1);
-   countList(list);
-   printf("")
+   printf("%d\n",countList(list));
    return 0;
 }
 
@@ -49,6 +48,7 @@ void printfList(List ** list)
 {
    List * tmp;
    tmp = *list;
+   tmp = tmp->next;
    while(tmp->next != NULL)
    {
      printf("值->%d\n",tmp->value);
