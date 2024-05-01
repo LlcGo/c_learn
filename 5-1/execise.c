@@ -11,16 +11,20 @@ void createLinked(List ** list,int n);
 void printfList(List ** list);
 void count(List ** list,int * i);
 int countList(List * list);
+List * searchList(List * list,int e);
 
 int main(void)
 {
    List * list;
+   List * tmp;
    int count1 = 0;
    createLinked(&list,5);
    printfList(&list);
    count(&list,&count1);
    printf("数量->%d\n",count1);
    printf("%d\n",countList(list));
+   tmp =  searchList(list,1);
+   printf("返回的值->%d\n",tmp->value);
    return 0;
 }
 
@@ -80,4 +84,20 @@ int  countList(List * list)
        
    }
   return count; 
+}
+
+
+List * searchList(List * list,int e)
+{
+    List * tmp;
+    tmp = list;
+    while(tmp->next != NULL)
+    {
+       if(tmp->value == e)
+       {
+           return tmp; 
+       }
+       tmp = tmp->next; 
+    }
+    return tmp;      
 }
