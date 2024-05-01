@@ -13,6 +13,10 @@ void count(List ** list,int * i);
 int countList(List * list);
 List * searchList(List * list,int e);
 List * reverse(List * first);
+List * reverse2(List * first);
+//int dll_inser(List * head,List * rear,int value);
+List *sll_reverse(List *rootp);
+
 
 int main(void)
 {
@@ -26,6 +30,10 @@ int main(void)
    printf("%d\n",countList(list));
    tmp =  searchList(list,1);
    printf("返回的值->%d\n",tmp->value);
+   List * temp = sll_reverse(list);
+   //tmp = reverse(list);
+   printf("-----------------------------\n");
+   printfList(&temp);
    return 0;
 }
 
@@ -103,37 +111,37 @@ List * searchList(List * list,int e)
     return tmp;      
 }
 
-int dll_inser(List * head,List * rear,int value)
-{
-   register List * this;
-   register List * next;
-   register List * new;
-   for(this = head;(next = this->fwd) != NULL;this = next)
-   {
-     if(value == next->value)
-        return 0;
-     if(next->value > value)
-         break;
-   } 
-   new = (List*)malloc(sizeof(List));
-   if(new == NULL)
-   {   
-     return -1;
-   }
-   new->value = value;
-   if(this == head)
-      head = new;
-   else
-      this->fwd = new;
+//int dll_inser(List * head,List * rear,int value)
+//{
+//   register List * this;
+//   register List * next;
+//   register List * new;
+//   for(this = head;(next = this->fwd) != NULL;this = next)
+//   {
+//     if(value == next->value)
+//        return 0;
+//     if(next->value > value)
+//         break;
+//   } 
+//   new = (List*)malloc(sizeof(List));
+//   if(new == NULL)
+//   {   
+//     return -1;
+//   }
+//   new->value = value;
+ //  if(this == head)
+ //     head = new;
+ //  else
+ //     this->fwd = new;
 
-   if(head == NULL || next == NULL)
-      rear = new;
-   else
-      next->bwd = new;
-   new->fwd = next;
-   new->bwd = this; 
-   return 0;
-}
+//   if(head == NULL || next == NULL)
+//     rear = new;
+//   else
+//      next->bwd = new;
+//   new->fwd = next;
+//  new->bwd = this; 
+//   return 0;
+//}
 
 
 List * reverse(List * first)
@@ -142,11 +150,49 @@ List * reverse(List * first)
    List * next;
    if(first != NULL)
    {
-     for(current = NULL;next != NULL;first = next)
+     for(current = NULL;first != NULL;first = next)
      {
          next = first->next;
          first->next = current;
          current = first;   
      }    
-   }  
+   }
+   return first;  
+}
+
+List *sll_reverse(List *rootp)
+{
+    List * prev = NULL;
+    List * curr = rootp;
+    while (curr) {
+        List * next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+    return prev;
+}
+
+List * reverse2(List * first)
+{
+  List * newfirst;
+  List * p = first;
+  List * q = first;
+  if(first != NULL)
+    return NULL;
+  while(p->next != NULL)
+  {
+         q = p;
+         p = p->next;     
+  }
+  newfirst = p;
+
+  while(q->next != NULL)
+  {
+         p->next = q;
+         p = q;
+         q = q->next;
+  }  
+  q->next = NULL;
+  return newfirst;  
 }
