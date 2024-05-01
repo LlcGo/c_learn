@@ -10,6 +10,22 @@ typedef struct List{
 void createLinked(List ** list,int n);
 void printfList(List ** list);
 void count(List ** list,int * i);
+int countList(List * list);
+
+int main(void)
+{
+   List * list;
+   int count1 = 0;
+   createLinked(&list,5);
+   printfList(&list);
+   count(&list,&count1);
+   printf("数量->%d\n",count1);
+   countList(list);
+   printf("")
+   return 0;
+}
+
+
 void createLinked(List ** list,int n)
 {
    int i;
@@ -40,16 +56,6 @@ void printfList(List ** list)
    }
 }
 
-int main(void)
-{
-   List * list;
-   int count1 = 0;
-   createLinked(&list,5);
-   printfList(&list);
-   count(&list,&count1);
-   printf("数量->%d\n",count1);
-   return 0;
-}
 
 void  count(List ** list,int * i)
 {
@@ -60,4 +66,18 @@ void  count(List ** list,int * i)
       (*i)++;
       temp = temp->next;
    }  
+}
+
+int  countList(List * list)
+{
+   int count = 0;
+   List * temp = list;
+   temp = temp->next;
+   while(temp->next != NULL)
+   {
+      count++;
+      temp = temp->next;
+       
+   }
+  return count; 
 }
