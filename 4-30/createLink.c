@@ -20,7 +20,7 @@ int main(void)
  createLinked(&list,5);
  printfNode(&list); 
  //printf("地址->%p",&list); 
- removeL(&list);
+ removeL2(&list);
  printfNode(&list); 
  return 0;
 }
@@ -82,3 +82,22 @@ void removeL2(Node * node)
   (*node)->next = NULL;
 }
 
+int getMidNode(Node  node, int *e)
+{
+   Node fast,mid;
+   mid = fast = node;
+   while(fast-> != NULL)
+   {
+     if(fast->next->next != NULL)
+     { 
+        fast = fast->next->next;
+        mid = mid->next;
+     } 
+     else
+     {
+        fast = fast->next;
+     }       
+   }
+  *e = mid->value;
+  return 0;
+}
