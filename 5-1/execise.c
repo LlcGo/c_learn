@@ -9,7 +9,7 @@ typedef struct List{
 
 void createLinked(List ** list,int n);
 void printfList(List ** list);
-
+void count(List ** list,int * i);
 void createLinked(List ** list,int n)
 {
    int i;
@@ -43,8 +43,21 @@ void printfList(List ** list)
 int main(void)
 {
    List * list;
+   int count1 = 0;
    createLinked(&list,5);
    printfList(&list);
+   count(&list,&count1);
+   printf("数量->%d\n",count1);
    return 0;
 }
 
+void  count(List ** list,int * i)
+{
+   List * temp;
+   temp = *list;
+   while(temp->next!=NULL)
+   {
+      (*i)++;
+      temp = temp->next;
+   }  
+}
