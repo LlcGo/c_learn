@@ -13,6 +13,7 @@ void count(List ** list,int * i);
 int countList(List * list);
 List * searchList(List * list,int e);
 List * reverse(List * first);
+// 错的
 List * reverse2(List * first);
 //int dll_inser(List * head,List * rear,int value);
 List *sll_reverse(List *rootp);
@@ -30,10 +31,10 @@ int main(void)
    printf("%d\n",countList(list));
    tmp =  searchList(list,1);
    printf("返回的值->%d\n",tmp->value);
-   List * temp = sll_reverse(list);
-   //tmp = reverse(list);
+   //tmp = sll_reverse(list);
+   tmp = reverse(list);
    printf("-----------------------------\n");
-   printfList(&temp);
+   printfList(&tmp);
    return 0;
 }
 
@@ -157,7 +158,7 @@ List * reverse(List * first)
          current = first;   
      }    
    }
-   return first;  
+   return current;  
 }
 
 List *sll_reverse(List *rootp)
@@ -173,6 +174,7 @@ List *sll_reverse(List *rootp)
     return prev;
 }
 
+// 错的
 List * reverse2(List * first)
 {
   List * newfirst;
