@@ -101,3 +101,9 @@ int deleteList(SLinkList L, int i)
   Free_SLL(L,j);
   return 0;
 }
+
+void Free_SSL(SLinkList space,int k)
+{
+    spcae[k].cur = space[o].cur;
+    space[0].cur =k;
+}
