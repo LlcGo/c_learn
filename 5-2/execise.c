@@ -18,6 +18,8 @@ List * reverse2(List * first);
 //int dll_inser(List * head,List * rear,int value);
 List *sll_reverse(List *rootp);
 int sll_remove(List ** list,List * node);
+int sll_remove2(List ** list,List * node);
+int sll_remove2(List ** list,List * node);
 
 
 int main(void)
@@ -37,11 +39,28 @@ int main(void)
    // printf("-----------------------------\n");
    List * new =  (List*)malloc(sizeof(List));
    new->value = 2;
-   sll_remove(&list,new);
+   sll_remove3(&list,new);
    printfList(&list);
    return 0;
 }
 
+// 网上搜的方法坑的  我只想对这个哥们说：你一套流程跑完你的头节点指针 都到哪去都不知道了 还怎么遍历啊哥们，还怎么玩啊哥们
+int sll_remove2(List ** list,List * node)
+{
+  List * tmp;
+  arrsert(node != NULL);
+  while((tmp = *list)!=NULL)
+  {
+     if(tmp = node)
+     {
+      *list = tmp->next;
+       free(node);
+       return 1; 
+     }
+     list = &tmp->next;
+  }
+  return 0; 
+}
 
 int sll_remove(List ** list,List * node)
 {
