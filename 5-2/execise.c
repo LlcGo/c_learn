@@ -45,7 +45,7 @@ int main(void)
    return 0;
 }
 
-
+// 网上复制的双链表删除 全错
 int dll_remove(List * rootp,List node){
    List * this;
    while((this = rootp->fwd) != NULL) {
