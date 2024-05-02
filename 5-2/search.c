@@ -7,10 +7,12 @@ typedef struct Node{
 
 
 Node * search(Node * node,int const value);
-
+Node * search_list(Node * node,void const * value, int (*compare)(void const *,void const *));
+int compare_ints(void const * a,void const * b);
 
 int main(void)
 {
+
   return 0;
 }
 
@@ -24,4 +26,29 @@ Node * search(Node * node,int const value)
         node =node->link;
    }
    return node;
+}
+
+
+int compare_ints(void const * a,void const * b)
+{
+    if(*(int *)a == *(int*)b)
+    {
+         return 0;
+    }
+    else
+    {
+        return 1;
+    }   
+}
+
+
+Node * search_list(Node * node,void const * value, int (*compare)(void const *,void const *))
+{
+    while(node != NULL)
+    {
+        if(compare(node->value,value) == 0)
+             break;
+        node = node->next; 
+    }
+    return node;
 }
