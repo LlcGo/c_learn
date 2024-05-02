@@ -58,7 +58,7 @@ int sll_remove5(List ** list,List * node)
    List * tmp = *list;
    while(tmp->next != NULL)
    {
-      if(tmp->next->value = node->value)
+      if(tmp->next->value == node->value)
       {
          tmp->next =tmp->next->next;
          free(node);
@@ -107,7 +107,7 @@ int sll_remove2(List ** list,List * node)
   // arrsert(node != NULL);
   while((tmp = *list)!=NULL)
   {
-     if(tmp = node)
+     if(tmp == node)
      {
       *list = tmp->next;
        free(node);
