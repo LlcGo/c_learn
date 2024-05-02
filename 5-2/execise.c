@@ -21,6 +21,7 @@ int sll_remove(List ** list,List * node);
 int sll_remove2(List ** list,List * node);
 int sll_remove3(List ** list,List * node);
 int sll_remove5(List ** list,List * node);
+int dll_remove(List * rootp,List node);
 
 int main(void)
 {
@@ -42,6 +43,36 @@ int main(void)
    sll_remove3(&list,new);
    printfList(&list);
    return 0;
+}
+
+
+int dll_remove(List * rootp,List node){
+   List * this;
+   while((this = rootp->fwd) != NULL) {
+       if(p == node)
+        {
+           if(p->bwd == NULL)
+           {
+              rootp->fwd = p->fwd; 
+           }
+           else
+            {
+               p->fwd->bwd = rootp; 
+            }
+            if(p->fwd != NULL)
+            {
+               p->fwd->bwd = rootp;
+            }
+            else
+            {
+               rootp->bwd = p->bwd; 
+            }
+            free(node);
+            return 1;
+        }
+         rootp = p;
+   }  
+        return 0;  
 }
 
 int sll_remove5(List ** list,List * node)
