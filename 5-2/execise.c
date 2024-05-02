@@ -19,7 +19,7 @@ List * reverse2(List * first);
 List *sll_reverse(List *rootp);
 int sll_remove(List ** list,List * node);
 int sll_remove2(List ** list,List * node);
-int sll_remove2(List ** list,List * node);
+int sll_remove3(List ** list,List * node);
 
 
 int main(void)
@@ -44,11 +44,39 @@ int main(void)
    return 0;
 }
 
+
+int sll_remove3(List ** list,List * node)
+{
+   List * pre, *curr;
+   curr = *list;
+   while(curr != NULL)
+   {
+       if(curr->value == node->value)
+       {
+           // 如果是头指针 没有移动过
+           if(pre == NULL)
+           {
+              *list = curr->next; 
+           }
+           else
+           {
+              pre->next = curr->next;  
+           }
+           free(curr);
+           return 1;
+       }
+      // 不相等 移动
+      pre = curr;
+      curr = curr->next;
+   }
+   return 0;
+}
+
 // 网上搜的方法坑的  我只想对这个哥们说：你一套流程跑完你的头节点指针 都到哪去都不知道了 还怎么遍历啊哥们，还怎么玩啊哥们
 int sll_remove2(List ** list,List * node)
 {
   List * tmp;
-  arrsert(node != NULL);
+  // arrsert(node != NULL);
   while((tmp = *list)!=NULL)
   {
      if(tmp = node)
