@@ -20,7 +20,7 @@ List *sll_reverse(List *rootp);
 int sll_remove(List ** list,List * node);
 int sll_remove2(List ** list,List * node);
 int sll_remove3(List ** list,List * node);
-
+int sll_remove5(List ** list,List * node);
 
 int main(void)
 {
@@ -42,6 +42,34 @@ int main(void)
    sll_remove3(&list,new);
    printfList(&list);
    return 0;
+}
+
+int sll_remove5(List ** list,List * node)
+{
+   //先排除头节点删除的问题
+   while((*list) != NULL && (*list)->value == node->value)
+   {
+      (*list) = (*list)->next;
+   }
+   if((*list) == NULL)
+   {
+      return 0;
+   }
+   List * tmp = *list;
+   while(tmp->next != NULL)
+   {
+      if(tmp->next->value = node->value)
+      {
+         tmp->next =tmp->next->next;
+         free(node);
+      }
+      else
+      {
+        tmp = tmp->next;
+      }
+   }
+   return 0;
+
 }
 
 
