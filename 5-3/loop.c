@@ -80,3 +80,21 @@ int HasLoop1(LinkList L)
    }   
 }
 
+// 快慢指针
+int HasLoop2(LinkList L)
+{
+  LinkList p = L;
+  LinkList q = L;
+  while(p != NULL && q != NULL && q->next != NULL)
+  {
+      p=p->next;  
+      if(q->next != NULL)
+          q=q->next->next;
+      printf("p:%d,q:%d\n",p->data,q->data);
+      if(q==p)
+         return 1; 
+  }
+  return 0;
+}
+
+
