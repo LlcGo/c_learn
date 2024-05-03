@@ -24,3 +24,32 @@ void DestoryList(linklist * list)
        free(buff[i]);
    *list = 0;
 }
+
+void Magician(linklist head)
+{
+   linklist p;
+   int j;
+   int Countnumber = 2;
+   p = head;
+   p->data = 1;  //放第一张牌
+
+   while(1)
+   {
+      for(j = 0; j < Countnumber; j++)
+      {
+          p = p->next;
+          if(p->data != 0)
+          {
+              p->next;
+              j--;
+          } 
+      }
+      if(p->data == 0)
+      {
+          p->data = Countnumber;
+          Countnumber++;
+          if(Countnumber == 14)
+               break;
+      }
+   }
+}
