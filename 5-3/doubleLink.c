@@ -14,13 +14,16 @@ typedef struct DualNode
   struct DualNode *next;
 }DualNode,*DuLinkList;
 
+void Caesar(DuLinkList * L,int i);
+Status InitList(DuLinkList *L);
+
 Status InitList(DuLinkList *L)
 {
    DualNode *p,*q;
    int i;
    *L = (DuLinkList)malloc(sizeof(DualNode));
    (*L)->next = (*L)->prior = NULL;
-   p = (*L)
+   p = (*L);
    for(i = 0; i < 26; i++)
    {
       q = (DuLinkList)malloc(sizeof(DualNode));
@@ -35,8 +38,36 @@ Status InitList(DuLinkList *L)
    return OK;
 }
 
+void Caesar(DuLinkList * L,int i)
+{
+    if(i > 0)
+    {
+      do
+      {
+         (*L) = (*L)->next;
+      }while( --i);
+    } 
+  
+    if( i < 0 )
+    {
+         (*L) = (*L)->next;
+    }while( ++i );
+} 
+
 int main()
 {
+  DuLinkList L;
+  int i, n;
+  InitList(&L);
+  
+  printf("请输入一个整数:");
+  scanf("%d",&n);
+  Caesar(&L,n);
+  for(i = 0; i < 26; i++)
+  {
+    L=L->next;
+    printf("%c",L->data);
+  }
   
   return 0;
 }
