@@ -33,5 +33,21 @@ int ListLength(LinkList L)
    return OK;  
 }
 
-
+// 创建有环链表
+void CreateListTail(LinkList *L , int n)
+{
+    LinkList new,tmp;
+    int i;
+    srand(time(0));
+    *L = (LinkList)malloc(sizeof(Node));
+    tmp = *L;
+    for(int i; i< n; i++)
+    { 
+        new = (LinkList)malloc(sizeof(Node));
+        new->data = rand()%100 + 1;
+        tmp->next = new;
+        tmp = new; 
+    }
+    tmp->next = (*L)->next->next;     
+}
 
