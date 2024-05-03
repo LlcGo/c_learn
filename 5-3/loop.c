@@ -51,3 +51,32 @@ void CreateListTail(LinkList *L , int n)
     tmp->next = (*L)->next->next;     
 }
 
+int HasLoop1(LinkList L)
+{
+   LinkList curr1 = L;
+   int pos1= 0;
+   
+   while(curr1)
+   {
+      LinkList curr2 = L;
+      int pos2 = 0;
+      while(curr2)
+      {
+         if(curr2 == curr1)
+         {
+            if(pos1 == pos2)
+                break;
+            else
+            {
+               printf("换的位置在第%d个节点处。\n\n",pos2);
+               return OK; 
+            }   
+         }
+         curr2 = curr2->next;
+         pos2++;
+      } 
+     curr1 = curr1->next; 
+      pos1++;  
+   }   
+}
+
