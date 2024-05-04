@@ -16,6 +16,7 @@ void init(Stack * s);
 int push(Stack * s, int e);
 int clear(Stack * s);
 int DestoryStack(Stack * s);
+int currentTotal(Stack * s);
 
 void init(Stack * s)
 {
@@ -80,4 +81,11 @@ int DestoryStack(Stack * s)
    }
    s->base = s->top = NULL;
    s->stackSize = 0;
+}
+
+// 计算当前容量
+int currentTotal(Stack * s)
+{
+  // 指针可以相减 但是相+基本没有意义
+  return (s->top - s->base);
 }
