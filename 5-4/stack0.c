@@ -13,6 +13,8 @@ typedef struct
 }Stack;
 
 void init(Stack * s);
+int push(Stack * s, int e);
+int clear(Stack * s);
 
 void init(Stack * s)
 {
@@ -24,7 +26,7 @@ void init(Stack * s)
 
 int main(void)
 {
-
+  return 0;
 }
 
 // 入栈
@@ -55,4 +57,11 @@ int pop(Stack * s)
    // 指针下移一位后才能获得数据
    int i = *--(s->top); 
    return i; 
+}
+
+//清空栈
+int clear(Stack *s)
+{
+  s->top = s->base;
+  return 0;
 }
