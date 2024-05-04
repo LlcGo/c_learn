@@ -15,6 +15,7 @@ typedef struct
 void init(Stack * s);
 int push(Stack * s, int e);
 int clear(Stack * s);
+int DestoryStack(Stack * s);
 
 void init(Stack * s)
 {
@@ -59,9 +60,24 @@ int pop(Stack * s)
    return i; 
 }
 
-//清空栈
+// 清空栈
 int clear(Stack *s)
 {
   s->top = s->base;
   return 0;
+}
+
+// 销毁一个栈
+int DestoryStack(Stack * s)
+{
+   int i;
+   int len = s->stackSize;
+   // 从下往上销毁 不然清不完
+   for(i = 0; i < len; i++)
+   {
+       free(s->base);
+       s-base++;
+   }
+   s->base = s->top = NULL;
+   s->stackSize = 0;
 }
