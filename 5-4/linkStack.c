@@ -26,3 +26,14 @@ int push(LinkStack * s,ElemType e)
 }
 
 
+// 出栈
+int pop(LinkStack *s,ElemType *e)
+{
+  *e = s->top->data;
+  LinkStack p;
+  p = s->top;
+  s->top = s->top->next;
+  free(p);
+  s->count--;
+  return 0;   
+}
