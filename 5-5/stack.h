@@ -10,3 +10,6 @@ int is_empty(void);
 
 int is_full(void);
 
+void create_stack(size_t size);
+
+void destory_stack(void);
