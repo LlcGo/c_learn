@@ -30,3 +30,7 @@ static void  CursorFree(Position P)
    CursorSpace[0].next = p;
 }
 
+int IsEmpty(List L)
+{
+   return CursorSpace[L].next == 0;
+}
