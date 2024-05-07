@@ -3,9 +3,9 @@
 
 char pairs(char a)
 {
-   if(a == '(') return ')';
-   if(a == '{') return '}';
-   if(a == '[') return ']';
+   if(a == ')') return '(';
+   if(a == '}') return '{';
+   if(a == ']') return '[';
    return 0;
 }
 
