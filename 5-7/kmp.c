@@ -33,7 +33,7 @@ int kmp(char a[],char b[])
   int b1 = strlen(b);
   while(k < a1 && p <a1)
   {
-     if(a[k] == b[p])
+     if(0 == p || a[k] == b[p])
      {
         k++;
         p++;
