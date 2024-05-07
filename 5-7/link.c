@@ -63,3 +63,15 @@ void insert(Element e,List L)
    }
 }
 
+void DeleteList(List L)
+{
+   ListLink tmp,p;
+   p = L;
+   while(p->next != NULL)
+   {
+     tmp = p->next;
+     p=p->next;
+     free(tmp);  
+   }
+}
+
