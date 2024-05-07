@@ -41,4 +41,22 @@ Position Find(ElementType e,List L)
   p = CursorSpace[L].next;
   while(p && CursorSpace[p].value != e)
      p = CursorSpace[p].next; 
+  return p;
 }
+
+Position FindPre(ElementType e,List L)
+{
+  Position p;
+  p = CursorSpace[L].next;
+  while(p && CursorSpace[CursorSpace[p].next].value != e)
+     p = CursorSpace[p].next;
+  return p;
+}
+
+
+void Delete(ElmentType e,List L)
+{
+   Position p,tmp;
+   p = 
+}
+
