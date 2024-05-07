@@ -34,3 +34,11 @@ int IsEmpty(List L)
 {
    return CursorSpace[L].next == 0;
 }
+
+Position Find(ElementType e,List L)
+{
+  Position p;
+  p = CursorSpace[L].next;
+  while(p && CursorSpace[p].value != e)
+     p = CursorSpace[p].next; 
+}
