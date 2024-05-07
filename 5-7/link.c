@@ -16,15 +16,29 @@ int isEmpty(LinkList L)
   return  L->next == NULL; 
 }
 
-
-
-List * find(ElementType e, LinkList L)
+LinkList find(ElementType e, LinkList L)
 {
      // 跳过头节点
      LinkList tmp = L->next;
-     while(L != NULL && tmp->value != value)
+     while(tmp != NULL && tmp->value != e)
      {
         tmp = tmp->next;   
      }
      return tmp;
+}
+
+LinkList findPre(ElementType e, LinkList L)
+{
+    LinkList tmp = L->next;
+    while(tmp != NULL && tmp->next->value != e)
+    {
+       tmp = tmp->next;
+    }
+    return tmp;
+}
+
+
+void Delete(ElementType e, LinkList L)
+{
+    
 }
