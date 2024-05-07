@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <string.h>
 #define  ElementType int
 
 struct Node
@@ -14,6 +14,8 @@ int IsEmpty(stack s)
 {
   return s->next == NULL;
 }
+
+int compare(char * c);
 
 stack createStack(void)
 {
@@ -46,3 +48,47 @@ ElementType Top(stack s)
   }
   return 0;
 }
+
+int main(){
+  char * c = "({)]";
+  int compare(c);
+}
+
+int compare(char * c)
+{
+   int len = strlen(c);
+   if(len % 2 !== 0)
+   {
+      return -1;
+   }
+   stack s =  createStack();
+   while((*c) != '\0')
+   {
+      if((*c) == '(')
+      {
+         push(s,')');
+      }  
+      else if((*c) == '[')
+      {
+         push(s,']');     
+      }
+      else if((*c) == '{')
+      {  
+         push(s,'}');
+      }
+      else if(IsEmpty(s) || Top(s) != (*c))
+      {
+            return -1;
+      }
+      else
+      {
+          pop(s);
+      }
+   }
+   if(!IsEmpty(s))
+   {
+      return -1;
+   }
+   return 0;
+}
+
