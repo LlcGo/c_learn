@@ -23,3 +23,10 @@ static Position CursorAlloc(void)
    CursorSpace[0] = CursorSpace[p].next;
    return p;
 }
+
+static void  CursorFree(Position P)
+{
+   CursorSpace[p].next = CursorSpace[0].next;
+   CursorSpace[0].next = p;
+}
+
