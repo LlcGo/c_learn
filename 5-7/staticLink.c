@@ -57,6 +57,12 @@ Position FindPre(ElementType e,List L)
 void Delete(ElmentType e,List L)
 {
    Position p,tmp;
-   p = 
+   p = findPre(e,L);
+   if(CursprSpace[p].next != 0)
+   {
+     tmp = CursorSpace[p].next;
+     CursorSpace[p].next = CursorSpace[tmp].next;
+     free(tmp);
+   }
 }
 
