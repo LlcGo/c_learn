@@ -40,5 +40,14 @@ LinkList findPre(ElementType e, LinkList L)
 
 void Delete(ElementType e, LinkList L)
 {
-    
+  LinkList tmp;
+  LinkList pre =  findPre(e,L);  
+  if(pre->next != NULL)
+  {
+     tmp = pre->next; 
+     pre->next = tmp->next;
+     free(tmp); 
+  }  
 }
+
+
