@@ -30,3 +30,19 @@ void push(stack s,ElementType e)
    new->next = s->next;
    s->next= new;
 }
+
+void pop(stack s)
+{
+  stack tmp = s->next;
+  s->next = s->next->next;
+  free(tmp);    
+}
+
+ElementType Top(stack s)
+{
+  if(!IsEmpty(s))
+  {
+    return s->next->value;
+  }
+  return 0;
+}
