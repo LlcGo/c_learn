@@ -66,3 +66,12 @@ void Delete(ElmentType e,List L)
    }
 }
 
+void insert(ElementType e,List L,Position p)
+{
+  Position tmp;
+  tmp = CursorAlloc();
+  CursorSpace[tmp].value = e;
+  CursorSpace[tmp].next = CursorSpace[p].next;
+  CursorSpace[p].next = tmp; 
+}
+
