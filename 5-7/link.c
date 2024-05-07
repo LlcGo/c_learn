@@ -50,4 +50,16 @@ void Delete(ElementType e, LinkList L)
   }  
 }
 
+void insert(Element e,List L)
+{
+   LinkList pre,tmp;
+   pre =  findPre(e,L);
+   if(pre->next != NULL)
+   {
+     tmp = (LinList *)malloc(sizeof(Node));
+     tmp->value = e;
+     tmp->next = pre->next;
+     pre->next =tmp;   
+   }
+}
 
