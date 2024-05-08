@@ -80,3 +80,41 @@ Tree insert(Tree T,ElementType e)
 	}
 	return T;
 }
+
+Tree deleteTree(Tree T,ElementType e)
+{
+	Tree tmp;
+	if(T == NULL)
+	{
+		ERROR("出错");
+		exit(1);
+	}
+	else if(e < T->Element)
+	{
+		T->left = deleteTree(T->left,e);
+	}
+	else if(e > T->Element)
+	{
+		T->right = deleteTree(T->right,e);
+	}
+	else if (T->left && T->right)
+	{
+	    tmp = findMin(T->right);
+		T->Element = tmp->Element;
+		T->right = 	deleteTree(T->right,T->Element);
+	}
+	else
+	{
+		tmp = T;
+		if(T->left == NULL)
+		{
+			T = T->right;
+		}
+		else if(T->right == NULL)
+		{
+			T = T->left;
+		}
+		free(tmp);
+	}
+	return T;
+}
