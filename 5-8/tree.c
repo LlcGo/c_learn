@@ -33,3 +33,12 @@ Tree find(Tree T,ElementType e)
 	     return T;	    
 }
 
+Tree findMin(Tree T)
+{
+	if(T == NULL)
+	    return NULL;
+	if(T->left != NULL)
+	    return findMin(T->left);
+	else
+	    return T;	    
+}
