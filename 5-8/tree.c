@@ -53,3 +53,30 @@ Tree findMax(Tree T)
 	else
 	    return T;	    
 }
+
+Tree insert(Tree T,ElementType e)
+{
+	if(T == NULL)
+	{
+		T = (Tree)malloc(sizeof(TreeNode));
+		if(T == NULL)
+		{
+			printf("出错");
+			exit(1);
+		}
+		else
+		{
+			T->Element = e;
+			T->left = T->right = NULL;
+		}
+	}
+	else if(e > T->Element)
+	{
+		T->right = insert(T->right,e); 
+	}
+	else if(e < T->Element)
+	{
+		T->left = insert(T->left,e);
+	}
+	return T;
+}
