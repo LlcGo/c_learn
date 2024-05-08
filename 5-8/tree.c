@@ -20,3 +20,16 @@ Tree MakeEmpty(Tree T)
 	}
 	return NULL;
 }
+
+Tree find(Tree T,ElementType e)
+{
+	if(T == NULL)
+	    return NULL;
+	if(T->Element > e)
+	    return find(T->left,e);
+	else if(T->Element < e)
+	    return find(T->right,e);
+	else
+	     return T;	    
+}
+
