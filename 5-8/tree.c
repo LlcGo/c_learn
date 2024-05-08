@@ -42,3 +42,14 @@ Tree findMin(Tree T)
 	else
 	    return T;	    
 }
+
+
+Tree findMax(Tree T)
+{
+	if(T == NULL)
+	    return NULL;
+	if(T->right != NULL)
+	    return findMax(T->right);
+	else
+	    return T;	    
+}
