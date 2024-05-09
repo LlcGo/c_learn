@@ -38,3 +38,20 @@ HashTable init(int tableSize)
 	}
 	return H;
 }
+
+Position Find(ElementType key,HashTable H)
+{
+	Position currentP;
+	int collisionNum;
+	collisionNum = 0;
+	currentPos = hash(key,H->TableSize);
+	while(H->TheCells[currentPos].info != Empty && H->TheCells[currentPos].Element != key)
+	{
+		currentPos += 2 * ++CollisionNum - 1;
+		if(currentPost >= H->TableSize)
+		{ 
+		    currentPost -= H->TableSize;
+		}
+	}
+	return cirrentPost;
+}
