@@ -55,3 +55,15 @@ Position Find(ElementType key,HashTable H)
 	}
 	return cirrentPost;
 }
+
+
+void insert(ElementType key,HashTable H)
+{
+	Position P;
+	P = Find(key,H);
+	if(H->TheCells[P].info != Legitimate)
+	{
+		H->TheCells[P].info = Legitimate;
+		H->TheCells[P].Element = key;
+	}
+}
