@@ -1,6 +1,23 @@
 #include <stdio.h>
 
 typedef unsigned int Index;
+typedef struct ListNode * Position;
+typedef char * ElementType 
+struct ListNode
+{
+	ELementType element;
+    Position * next;	
+};
+
+typedef Position List;
+
+struct HashTbl
+{
+	int tableSize;
+	List * theLists;
+};
+
+typedef HashTbl * HashTable;
 
 
 HashTable init(int tableSize)
