@@ -32,3 +32,16 @@ Index hash(const char *key, int tableSize)
    return hashval % tableSize;
 }
 
+Position Find(ElementType key,HashTable H)
+{
+	Position P;
+	List L;
+	// 找到散列到的数组位置
+	L = H->theLists[hash(key,H->tableSize)];
+	P = L->next;
+	while( P != NULL && P->element != key)
+	{
+		P = P->next;
+	}
+	return P;
+}
