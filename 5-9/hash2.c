@@ -1,3 +1,4 @@
+#include <stido.h>
 igned int index;
 typedef Index Position;
 
