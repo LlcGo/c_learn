@@ -45,3 +45,22 @@ Position Find(ElementType key,HashTable H)
 	}
 	return P;
 }
+
+void insert(ElementType key, HashTable H)
+{
+	Position P, newCell;
+	List L;
+	P = Find(key,H);
+	// 没有这个值
+	if(P == NULL)
+	{
+		// 创建新节点
+		newCell = (Position)malloc(sizeof(ListNode));
+		// 放入值
+		newCell->element = key;
+		// hash后的数组位置
+		L = H->theLists[hash(key,H->tableSize)];
+		newCell->next = L->next;
+		L->next = newCell;
+	}
+}
