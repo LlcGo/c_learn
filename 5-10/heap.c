@@ -20,4 +20,16 @@ ProrityQueue init(int MaxElement)
   H->capacity = MaxElement;
   H->Size = 0; 
   H->Elements[1] = MinData;
+  return H;
+}
+
+
+void insert(ElementType X,PriorityQueue H)
+{
+  int i;
+  for(i = ++H->Size; H->Elements[i/2] > X; i/=2)
+  {
+     H->Elements[i] = H->Elements[i/2];
+  }
+  H->Elements[i] = X;
 }
