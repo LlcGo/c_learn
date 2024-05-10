@@ -33,3 +33,25 @@ void insert(ElementType X,PriorityQueue H)
   }
   H->Elements[i] = X;
 }
+
+ElementType DeleteMin(PriorityQueue H)
+{
+  int i,child;
+  ElementType MinElement,LastElement;
+  MinElement = H->Elements[1];
+  LastElement = H->Elements[H->size--];
+  for(i = 1; i * 2 <= H->Size; i = child)
+  {
+    child = i * 2;
+    if(child != H->Size && H->Elements[child + 1] < H->Elements[child])
+    {
+        child++;
+    }
+    if( LastElement > H->Elements[child])
+    {
+       H->Elements[i] = H->Elements[child];
+    }  
+  }
+  H->Elements[i] = LastElement;
+  return MinElement;
+}
