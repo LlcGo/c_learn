@@ -21,3 +21,12 @@ void SetUnion(DisjSet S, SetType Root1,SetType Root2)
 {
    S[Root2] = Root1;
 }
+
+
+SetType Find(ElementType x,DisJSet S)
+{
+   if(S[x] <= 0)
+     return x;
+   else
+     return Find(S[x],S);
+}
