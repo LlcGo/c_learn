@@ -15,3 +15,9 @@ void init(DsiJSet S)
      s[i] = 0;
   }
 }
+
+
+void SetUnion(DisjSet S, SetType Root1,SetType Root2)
+{
+   S[Root2] = Root1;
+}
