@@ -15,3 +15,11 @@ void SetUnion(DisjSet S,SetType Root1,SetType Root2)
     S[Root2] = Root1;
   }
 }
+
+SetType Find(Element x,DisjSet s)
+{
+  if(s[x] <= 0)
+     return x;
+  else
+    return s[x] = Find(S[x],S);
+}
