@@ -26,3 +26,12 @@ void createTree(BiTree *T)
      createTree(&(*T)->rchild);
   }
 }
+
+
+
+void PreOrderTraverse(BiTree T,int level)
+{
+    printf("%d",level)
+    PreOrderTraverse(T->lchild,level+1);
+    preOrderTraverse(T->rchild,level+1);
+}
