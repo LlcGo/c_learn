@@ -31,7 +31,10 @@ void createTree(BiTree *T)
 
 void PreOrderTraverse(BiTree T,int level)
 {
-    printf("%d",level)
+    printf("%c在第%d层\n",T->data,level);
     PreOrderTraverse(T->lchild,level+1);
     preOrderTraverse(T->rchild,level+1);
 }
+
+
+
