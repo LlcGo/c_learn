@@ -43,5 +43,20 @@ int isEmpty(sqTree T)
   return 1;
 }
 
-
-
+// 返回二叉树深度
+int TreeDeep(sqTree T)
+{
+   int i = 1;
+   int count = 0;
+   int j = 0;
+   while(T[i] != 0)
+   {
+     count++; //获得当前的二叉树数量
+     i++;
+   }
+   while(count >= powl(2,j))// 计算 2 的几次幂
+   {
+     j++;
+   }
+   return --j; 
+}
