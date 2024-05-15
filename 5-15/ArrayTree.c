@@ -4,6 +4,10 @@
 
 typedef int Element; // 树的节点的类型
 typedef Element sqTree[MAXSIZE]; //定义一个数组
+typedef struct
+{
+	int level,order; /* 结点的层,本层序号(按满二叉树计算) */
+}Position;
 
 // 初始化树
 void inintTree(sqTree T)
@@ -71,4 +75,10 @@ int  Root(sqTree T, Element *e)
   }
   *e = -1;
   return -1;
+}
+
+// 根据层和序号返回这个二叉树的值
+Element Value(sqTree T,Position e)
+{
+   return T[((int)powl(2,e.level-1)+e.order - 2)];
 }
