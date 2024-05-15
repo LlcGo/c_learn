@@ -60,3 +60,15 @@ int TreeDeep(sqTree T)
    }
    return --j; 
 }
+
+// 返回根节点的值
+int  Root(sqTree T, Element *e)
+{
+  if(!isEmpty(T))
+  { 
+      *e =  T[1]; 
+      return 0;
+  }
+  *e = -1;
+  return -1;
+}
