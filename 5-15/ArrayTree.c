@@ -43,7 +43,7 @@ int isEmpty(sqTree T)
   return 1;
 }
 
-// 返回二叉树深度 2的k次方+1 = 结点
+// 返回二叉树深度 2的k次方+1 = 结点 k为深度
 int TreeDeep(sqTree T)
 {
    int i = 1;
