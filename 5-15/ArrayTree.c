@@ -13,6 +13,7 @@ void inintTree(sqTree T)
       *(sqTree + i) = 0;
 }
 
+// 创建树
 void createTree(sqTree T)
 {
    int i = 1;
@@ -35,7 +36,12 @@ void createTree(sqTree T)
 }
 
 
-
+// 当前树是否为空 如果是空树就返回1 不是就返回0
+int isEmpty(sqTree T)
+{
+  if(T[1] == 0)return 0; 
+  return 1;
+}
 
 
 
