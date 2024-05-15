@@ -43,7 +43,7 @@ int isEmpty(sqTree T)
   return 1;
 }
 
-// 返回二叉树深度
+// 返回二叉树深度 2的k次方+1 = 结点
 int TreeDeep(sqTree T)
 {
    int i = 1;
@@ -54,7 +54,7 @@ int TreeDeep(sqTree T)
      count++; //获得当前的二叉树数量
      i++;
    }
-   while(count >= powl(2,j))// 计算 2 的几次幂
+   while(count >= powl(2,j)+1)// 计算 2 的几次幂
    {
      j++;
    }
