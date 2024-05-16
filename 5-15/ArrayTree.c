@@ -84,7 +84,7 @@ Element Value(sqTree T,Position e)
 }
 
 
-//给制定位置的二叉树赋新值
+// 给制定位置的二叉树赋新值
 int Assign(sqTree T, Position e, Element value)
 {
   if(isEmpty(T))
@@ -103,4 +103,19 @@ int Assign(sqTree T, Position e, Element value)
   return 0; 
 }
 
+// 根据value查找双亲
+int Parent(sqTree T,Element e)
+{
+  int i = 1;
+  while(T[i]!=e)
+  {
+     if(T[i] == e)
+     {
+        return T[i/2]'
+     }
+     i++;
+  }
+  return -1;
+  
+}
 
