@@ -193,18 +193,26 @@ void Pre(sqTree T,int i)
 }
 
 // 中序遍历
-void Pre(sqTree T,int i)
+void In(sqTree T,int i)
 {
   if(T[2*i] != 0)
   {
-     pre(T,2*i);
+     In(T,2*i);
   }
   printf("%d-",T[i])
   if(T[2*i+1] != 0)
   {
-     pre(T,2*i+1);
+     In(T,2*i+1);
   }
 }
 
+// 后序遍历
+void post(sqTree T,int i)
+{
+  if(T[2*i] != 0)
+    post(T,2*i);
+  if(T[2*i + 1] != 0)
+    post(T,2*i+1);
+}
 
  
