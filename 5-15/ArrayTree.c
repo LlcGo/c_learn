@@ -111,7 +111,7 @@ int Parent(sqTree T,Element e)
   {
      if(T[i] == e)
      {
-        return T[i/2]'
+        return T[i/2];
      }
      i++;
   }
@@ -126,9 +126,25 @@ int leftChild(sqlTree T,Element e)
   {
      if(T[i] == e)
      {
-        return T[i/2]'
+        return T[2*i];
      }
      i++;
   }
-  return T[2*i];
+  return -1;
 }
+
+
+int leftChild(sqlTree T,Element e)
+{
+  int i = 1;
+  while(T[i]!=e)
+  {
+     if(T[i] == e)
+     {
+        return T[2*i+1];
+     }
+     i++;
+  }
+  return -1;
+}
+
