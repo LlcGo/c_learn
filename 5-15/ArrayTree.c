@@ -119,3 +119,16 @@ int Parent(sqTree T,Element e)
   
 }
 
+int leftChild(sqlTree T,Element e)
+{
+  int i = 1;
+  while(T[i]!=e)
+  {
+     if(T[i] == e)
+     {
+        return T[i/2]'
+     }
+     i++;
+  }
+  return T[2*i];
+}
