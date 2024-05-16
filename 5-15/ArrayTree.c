@@ -192,6 +192,19 @@ void Pre(sqTree T,int i)
   }
 }
 
+// 中序遍历
+void Pre(sqTree T,int i)
+{
+  if(T[2*i] != 0)
+  {
+     pre(T,2*i);
+  }
+  printf("%d-",T[i])
+  if(T[2*i+1] != 0)
+  {
+     pre(T,2*i+1);
+  }
+}
 
 
  
