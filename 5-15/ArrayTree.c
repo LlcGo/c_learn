@@ -231,4 +231,23 @@ void levelOrder(sqTree T)
    }
 }
 
+// 逐层遍历输出层号序号遍历输出
+
+void Printf(sqTree T)
+{
+   int i = 1,j = 0;
+   int e;
+   Position p;
+   for(i; i <= TreeDeep(i); i++)
+   {
+     printf("第%d层",i)
+     for(j;j <= powl(2,j-1); j++)
+     {
+         p.level = i;
+         p.order = j;
+         e = Value(T,p);
+         printf("第%d个，值为%d\n",j,e);  
+     } 
+   }
+}
  
