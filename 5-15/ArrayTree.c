@@ -215,4 +215,20 @@ void post(sqTree T,int i)
     post(T,2*i+1);
 }
 
+// 层序遍历
+void levelOrder(sqTree T)
+{
+   int i = 1, j = 0;
+   // 算出已经存了多少
+   while(T[i] != 0)
+   {
+      i++;
+   }
+   i--;
+   for(j; j < i; j++)
+   {
+      printf("%d-",T[j]);
+   }
+}
+
  
