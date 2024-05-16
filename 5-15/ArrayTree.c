@@ -24,7 +24,7 @@ void createTree(sqTree T)
    while(i <= 10)
    {
       *(T + i) = i;
-      if(i!=0 && T[2/i-1] == 0 && T[i] != 0)
+      if(i!=0 && T[i/2] == 0 && T[i] != 0)
       {
            printf("创建树异常");
            return;
@@ -82,3 +82,17 @@ Element Value(sqTree T,Position e)
 {
    return T[((int)powl(2,e.level-1)+e.order - 2)];
 }
+
+
+//给制定位置的二叉树赋新值
+int Assign(sqTree T, Position e, Element value)
+{
+  if(isEmpty(T))
+  {
+    return -1;
+  }
+  T[((int)powl(2,e.level-1)+e.order - 2)] = value;
+  return 0; 
+}
+
+
