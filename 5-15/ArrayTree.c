@@ -153,9 +153,24 @@ int leftSibling(sqlTree T,Element e)
   int i = 1;
   while(T[i]!=e)
   {
+     if(T[i] == e && i % 2)
+     {
+        return T[i-1];
+     }
+     i++;
+  }
+  return -1;
+}
+
+
+int leftSibling(sqlTree T,Element e)
+{
+  int i = 1;
+  while(T[i]!=e)
+  {
      if(T[i] == e && i % 2 == 0)
      {
-        return T[2*i+1];
+        return T[i+1];
      }
      i++;
   }
