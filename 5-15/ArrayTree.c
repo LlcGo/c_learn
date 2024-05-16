@@ -91,6 +91,10 @@ int Assign(sqTree T, Position e, Element value)
   {
     return -1;
   }
+  if(value == 0 && (T[2*i]!= 0 || T[2*i+1] !=0)
+  {
+    return -1;
+  }
   T[((int)powl(2,e.level-1)+e.order - 2)] = value;
   return 0; 
 }
