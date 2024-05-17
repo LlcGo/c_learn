@@ -48,7 +48,35 @@ void createBiTree(BiTree *T)
        createBiTree((*T)->rchild); 
 }
 
+// 是否为空树
 int BiTreeIsEmpty(BiTree T)
 {
    return T == NULL ? 1 : 0;
+}
+
+// 返回树的深度
+int BiTreeDepth(BiTree T)
+{
+  int i,j;
+  if(T == NULL)
+  { 
+    return 0;
+  }  
+  if(T->lchild != NULL)
+  {
+    i=BiTreeDepth(T->lchild);
+  }
+  else
+  {
+    i = 0;
+  } 
+  if(T->rchild != NULL)
+  {
+    j=BiTreeDepth(T->rchild);
+  }
+  else
+  {
+    j = 0;
+  }
+  return i > j ? i+1 : j+1;
 }
