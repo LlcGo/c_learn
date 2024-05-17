@@ -47,3 +47,8 @@ void createBiTree(BiTree *T)
        createBiTree((*T)->lchild);
        createBiTree((*T)->rchild); 
 }
+
+int BiTreeIsEmpty(BiTree T)
+{
+   return T == NULL ? 1 : 0;
+}
