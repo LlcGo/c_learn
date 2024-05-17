@@ -1,6 +1,9 @@
 #include <stdio.h>
 
-typedef char Element
+typedef char Element;
+int treeIndex=1;
+typedef char String[24];
+String str;
 
 typedef struct BiTNode // 结点结构
 {
@@ -31,5 +34,16 @@ void DestroyBiTree(BiTree *T)
 }
 
 
-
-
+// 按前序输入二叉树种结点的值
+void createBiTree(BiTree *T)
+{
+    Element ch;
+    ch = str[treeIndex++];
+    if(ch == '#')
+       *T = NULL;
+    else
+       *T = (BiTree)malloc(sizeof(BiTNode));
+       (*T)->data = ch;  
+       createBiTree((*T)->lchild);
+       createBiTree((*T)->rchild); 
+}
