@@ -16,6 +16,20 @@ int initBiTree(BiTree *T)
   return 0;
 }
 
+// 销毁二叉树
+void DestroyBiTree(BiTree *T)
+{
+   if((*T)->lchild) 
+     DestroyBiTree(&(*T)->lchild);
+   if((*T)->rchild) 
+     DestroyBiTree(&(*T)->rchild);
+   if(*T != NULL)
+   {
+      free(*T);
+      *T = NULL 
+   }  
+}
+
 
 
 
