@@ -9,4 +9,13 @@ typedef struct BiTNode // 结点结构
 }BiTNode,*BiTree;
 
 
+// 初始化树
+int initBiTree(BiTree *T)
+{
+  *T=NULL;
+  return 0;
+}
+
+
+
 
