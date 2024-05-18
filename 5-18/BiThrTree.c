@@ -33,3 +33,24 @@ int createBiThrTree(BiThrTree *T)
      }
    return 0;            
 }
+
+BiThrTree pre;
+void InThreading(BiThTree p)
+{
+  if(p)
+  {
+     InThreading(p->lchild);
+     if(!p->lchild)
+     {
+        p->LTag = Thread;
+        p->lchid = pre; 
+     }
+     if(!pre->rchild)
+     {
+       pre->rchild = p;
+       pre->RTag = Thread; 
+     }
+     pre = p;
+     InThreading(p->rchild);
+  }      
+}
