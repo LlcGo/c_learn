@@ -13,7 +13,7 @@ typedef struct BiThrNode
    PointerTage RTag;  
 }BiThrNode,*BiThrTree;
 
-
+// 构建线索二叉树标志结点
 int createBiThrTree(BiThrTree *T)
 {
      Element h;
@@ -34,6 +34,7 @@ int createBiThrTree(BiThrTree *T)
    return 0;            
 }
 
+// 中序遍历二叉树设置线索二叉树前驱
 BiThrTree pre;
 void InThreading(BiThTree p)
 {
@@ -55,6 +56,9 @@ void InThreading(BiThTree p)
   }      
 }
 
+
+
+// 非递归遍历线索二叉树
 int InOrderTraverse_Thr(BiThrTree T)
 {
    BiThrTree p;
