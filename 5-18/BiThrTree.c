@@ -5,6 +5,8 @@ typedef char Element;
 typedef enum {Link,Thread} PointerTage; //标志是线索还是结点
 Element Nil= '#';
 
+
+
 typedef struct BiThrNode
 {
    Element data;
@@ -12,6 +14,12 @@ typedef struct BiThrNode
    PointerTage LTag;
    PointerTage RTag;  
 }BiThrNode,*BiThrTree;
+
+
+int createBiThrTree(BiThrTree *T);
+void InThreading(BiThTree p);
+int InOrderThreading(BiThrTree *Thrt,BiThTree T);
+int InOrderTraverse_Thr(BiThrTree T);
 
 // 构建线索二叉树标志结点
 int createBiThrTree(BiThrTree *T)
@@ -33,6 +41,8 @@ int createBiThrTree(BiThrTree *T)
      }
    return 0;            
 }
+
+BiThrTree pre;
 
 //带头节点的线索二叉树
 int InOrderThreading(BiThrTree *Thrt,BiThTree T)
@@ -56,7 +66,6 @@ int InOrderThreading(BiThrTree *Thrt,BiThTree T)
 }
 
 // 中序遍历二叉树设置线索二叉树前驱
-BiThrTree pre;
 void InThreading(BiThTree p)
 {
   if(p)
