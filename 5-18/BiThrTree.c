@@ -34,6 +34,27 @@ int createBiThrTree(BiThrTree *T)
    return 0;            
 }
 
+//带头节点的线索二叉树
+int InOrderThreading(BiThrTree *Thrt,BiThTree T)
+{
+    *Thrt=(BiThrTree)malloc(sizeof(BiThrNode));
+    (*Thrt)->LTag=Link; //头节点
+    (*Thrt)->RTag=Thread;
+    (*Thrt)->rchild=(*Thrt);// 初始指自己
+    if(T==NULL)
+         (*Thrt)->lchid=*Thrt; //空树指自己
+    else
+    {
+      (*Thrt)->lchild=T;
+      pre = (*Thrt);
+      InOrderThreading(T);// 中序遍历进行中序线索化
+      pre->rchild=*Thrt;
+      pre->RTag=Thread;
+      (*Thrt)->rchild=pre;
+    } 
+    return 0;
+}
+
 // 中序遍历二叉树设置线索二叉树前驱
 BiThrTree pre;
 void InThreading(BiThTree p)
