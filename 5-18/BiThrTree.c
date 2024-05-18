@@ -54,3 +54,24 @@ void InThreading(BiThTree p)
      InThreading(p->rchild);
   }      
 }
+
+int InOrderTraverse_Thr(BiThrTree T)
+{
+   BiThrTree p;
+   p = T->lchild;
+   while(p!=T)
+   {
+      while(p->LTag == Link)
+      {
+          p=p->lchild;
+      }
+      printf("%c\n",p->data);
+      while(p->RTag == Thread&&p->rchild!=T)
+      {
+         p=p->rchild;
+         printf("%c\n",p->data);
+      }
+      p=p->rchild;
+   }
+  return 0;
+}
