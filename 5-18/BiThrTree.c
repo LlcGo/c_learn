@@ -30,5 +30,6 @@ int createBiThrTree(BiThrTree *T)
          createBiThrTree(&(*T)->rchild);
          if((*T)->rchild)
                (*T)->RTag = Link;
-     }            
+     }
+   return 0;            
 }
