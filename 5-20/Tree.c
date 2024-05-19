@@ -78,6 +78,14 @@ int deleteTree(AVLTree * T,Element e)
           free(*T); 
           return tmp; 
        }
+       if((*T)->lchild == NULL && (*T)->rchild != NULL)
+       {
+          AVLTree * tmp;
+          tmp = (*T)->rchild;
+          free(*T);
+          return tmp;
+       }
+
    }
        
 }
