@@ -45,7 +45,7 @@ AVLTree findTree(AVLTree T,Element e)
    return T;        
 }
 
-void deleteTree(AVLTree T){
+void DestoryTree(AVLTree T){
       if(T == NULL)
          return;
       deleteTree(T->lchild);
@@ -54,5 +54,31 @@ void deleteTree(AVLTree T){
 }
 
 
-
+int deleteTree(AVLTree * T,Element e)
+{
+   if((*T)->value > e)
+   {
+     (*T)->rchild = deleteTree(&(*T)->rchild,e);
+   }
+   else if((*T)->value < e)
+   {
+     (*T)->lchild = deleteTree((*T)->lchide,e)
+   }
+   else if((*T)->value == e)
+   {
+       if((*T)->lchild == NULL && (*T)->rchild == NULL)
+       {
+          free(*T);
+          return NULL;        
+       }
+       if((*T)->lchild != NULL && (*T)->rchild == NULL)
+       {
+          AVLTree * tmp;
+          tmp = (*T)->lchild;
+          free(*T); 
+          return tmp; 
+       }
+   }
+       
+}
 
