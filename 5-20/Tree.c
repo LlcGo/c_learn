@@ -28,11 +28,11 @@ void createAVLTree(AVLTree * T)
 }
 
 
-int findTree(AVLTree T,Element e)
+AVLTree findTree(AVLTree T,Element e)
 {
    if(T == NULL)
    {
-      return -1;
+      return NULL;
    }
    if(T->value > e)
    {
@@ -42,5 +42,17 @@ int findTree(AVLTree T,Element e)
    {
       findTree(T->lchide,e)
    }
-   return 0;        
+   return T;        
 }
+
+void deleteTree(AVLTree T){
+      if(T == NULL)
+         return;
+      deleteTree(T->lchild);
+      deleteTree(T->rchild);
+      free(T);              
+}
+
+
+
+
