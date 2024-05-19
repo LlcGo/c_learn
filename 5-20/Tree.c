@@ -54,15 +54,21 @@ void DestoryTree(AVLTree T){
 }
 
 
-int deleteTree(AVLTree * T,Element e)
+AVLTree deleteTree(AVLTree * T,Element e)
 {
+   if(T == NULL)
+   {
+     return NULL;
+   }
    if((*T)->value > e)
    {
      (*T)->rchild = deleteTree(&(*T)->rchild,e);
+     return *T
    }
    else if((*T)->value < e)
    {
-     (*T)->lchild = deleteTree((*T)->lchide,e)
+     (*T)->lchild = deleteTree((*T)->lchide,e);
+     return *T
    }
    else if((*T)->value == e)
    {
@@ -73,19 +79,30 @@ int deleteTree(AVLTree * T,Element e)
        }
        if((*T)->lchild != NULL && (*T)->rchild == NULL)
        {
-          AVLTree * tmp;
+          AVLTree  tmp;
           tmp = (*T)->lchild;
           free(*T); 
           return tmp; 
        }
        if((*T)->lchild == NULL && (*T)->rchild != NULL)
        {
-          AVLTree * tmp;
+          AVLTree  tmp;
           tmp = (*T)->rchild;
           free(*T);
           return tmp;
        }
-
+       if((*T)->lchid != NULL && (*T)->rchild != NULL)
+       {
+           AVLTree  cur = (*T)->left;
+           while((cur)->rchild != NULL)
+           {
+             cur = cur->rchild;
+           }
+          (*cur)->rchild =  (*T)->rchild;
+          AVLTree tmp = (*T)->lchild;     
+          free(*T);
+          return tmp;         
+       } 
    }
        
 }
