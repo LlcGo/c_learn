@@ -17,3 +17,13 @@ AVLTree newNode(int value)
    new->rchild = NULL;
    return new;
 }
+
+int getTreeHeigh(AVLTree T)
+{
+   if(T == NULL)
+     return 0;
+   return T->height;
+}
+
+
+
