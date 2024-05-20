@@ -31,7 +31,7 @@ int max(int a,int b)
 }
 
 // 左旋
-AVLTree leftRoat(AVLTree *T)
+AVLTree leftRoat(AVLTree T)
 {
    // 新的根是当前根的右结点
    AVLTree newRoot = T->rchild;
@@ -46,3 +46,19 @@ AVLTree leftRoat(AVLTree *T)
    return newRoot;
 }
 // 右旋
+AVLTree rightRoat(AVLTree T)
+{
+   // 新的根是原来根的左子树
+   AVLTree newRoot = T->lchid;
+   // 保存新头结点的右子树
+   AVLTree newRootRight =  newRoot->rchild;
+   // 原本的根变成的新根的右子树
+   newRoot->rchild = T;
+   // 新根的右子树的左子树是之前新结点的左子树
+   T->lchid = newRootRight;
+   // 更新树高
+   newRoot->height = 1 + max(getTreeHeigh(newRoot->lchid),getTreeHeigh(newRoot->rchild));
+   T->height = 1 + max(getTreeHeigh(T->lchid),getTreeHeigh(T->rchild));
+   return newRoot;
+}
+
