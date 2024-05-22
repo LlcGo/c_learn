@@ -107,5 +107,13 @@ AVLTree insertNode(AVLTree T,int key)
   }
 }
 
+void preOrder(AVLTree T)
+{
+   if(T == NULL)
+     return NULL;
+   printf("%d\n",T->data);
+   preOrder(T->lchid);
+   preOrder(T->rchild);
+}
 
 
