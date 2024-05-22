@@ -62,3 +62,38 @@ AVLTree rightRoat(AVLTree T)
    return newRoot;
 }
 
+int getBalance(AVLTree T)
+{
+   return getHeigh(T->lchid) - getHeigh(T->rchild);
+}
+
+AVLTree insertNode(AVLTree T,int key)
+{
+  if(T == NULL)
+  {
+     return newNode(key);
+  }  
+  if(key > T->data)
+  {
+   T->rchild =  insertNode(T->rchid,key);
+  }else if(key < T->data)
+  {
+   T->lchild =  insertNode(T->lchild,key);
+  }else //值已经存在
+  {
+    return T;
+  }
+  
+  T->height = max(getTreeHeigh(T->lchild),getTreeHeigh(T->rchild));
+  
+  int balance = getBalance(T);
+
+  if(node->height > 1 && T->lchild >0)
+  {
+     rightRoat(T); 
+  }
+ 
+}
+
+
+
