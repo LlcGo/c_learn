@@ -116,4 +116,12 @@ void preOrder(AVLTree T)
    preOrder(T->rchild);
 }
 
+void midOrder(AVLTree T)
+{
+  if(T == NULL)
+     return NULL;
+  midOrder(T->lchid);
+  printf("%d\n",T->data);
+  midOrder(T->rchild;)
+}
 
