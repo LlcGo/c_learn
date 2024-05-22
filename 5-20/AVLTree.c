@@ -87,12 +87,24 @@ AVLTree insertNode(AVLTree T,int key)
   T->height = max(getTreeHeigh(T->lchild),getTreeHeigh(T->rchild));
   
   int balance = getBalance(T);
-
+  // LL
   if(balance > 1 && getBlance(T->lchild) > 0)
+    return rightRoat(T);
+  // LR 
+  if(balance > 1 && getBlance(T->lchild) < 0)
   {
-    return rightRoat(T); 
+    T->lchild = leftRoat(T->lchid);
+    return rightRoat(T);
   }
- 
+  // RR
+  if(blance < -1 && getBlance(R->rchild) < 0)
+     return leftRoat(T);
+  // RL
+  if(blance < -1 && getBlance(R->rchild) > 0)
+  {
+    T->rchild = rightRoat(T->rchild);
+    return leftRoat(T);
+  }
 }
 
 
