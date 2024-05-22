@@ -88,9 +88,9 @@ AVLTree insertNode(AVLTree T,int key)
   
   int balance = getBalance(T);
 
-  if(node->height > 1 && T->lchild >0)
+  if(balance > 1 && getBlance(T->lchild) > 0)
   {
-     rightRoat(T); 
+    return rightRoat(T); 
   }
  
 }
