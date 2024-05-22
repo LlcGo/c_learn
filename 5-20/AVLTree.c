@@ -107,6 +107,7 @@ AVLTree insertNode(AVLTree T,int key)
   }
 }
 
+// 线序遍历
 void preOrder(AVLTree T)
 {
    if(T == NULL)
@@ -116,6 +117,7 @@ void preOrder(AVLTree T)
    preOrder(T->rchild);
 }
 
+// 中序遍历
 void midOrder(AVLTree T)
 {
   if(T == NULL)
@@ -124,4 +126,28 @@ void midOrder(AVLTree T)
   printf("%d\n",T->data);
   midOrder(T->rchild;)
 }
+
+// 查找结点 并且返回结点数量
+AVLTree find(AVLTree T,int key,int *counter)
+{
+  AVLTree cur = T;
+  while(cur != NULL)
+  {
+     if(key > cur->data)
+     {
+        cur = cur->rchild;
+        *counter++;
+     }
+     if(key < cur->data)
+     {
+        cur = cur->lchid;
+        *counter++;
+     }else
+        return cur;
+  }
+  // 没有找到
+  return NULL;
+}
+
+
 
