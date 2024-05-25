@@ -149,5 +149,57 @@ AVLTree find(AVLTree T,int key,int *counter)
   return NULL;
 }
 
-
-
+AVLTree deleteNode(AVLTree T, int key)
+{
+   if(T == NULL)
+   {
+      return NULL;
+   }
+   AVLTree tmp = NULL;
+   if(key > T->data)
+   {
+      deleteNode(T->rchild,key);
+   }
+   else if(key < T->data)
+   {
+      deleteNode(T->lchild,key);
+   }
+   else if(key == T->data)
+   {
+     // 删除的结点是叶子结点
+    if(T->lchid == NULL && T->rchild == NULL)
+    {
+      AVLTree tmp = T;
+      tmp = NULL;  
+      free(tmp);
+    }
+    // 删除的结点只有一个右孩子
+    if(T->lchild == NULL && T->rchild != NULL)
+    {
+       AVLTree tmp = T;
+       T = T->rchild;
+       free(tmp);
+    } 
+    // 删除的结点只有一个左孩子
+    if(T->lchild != NULL && T->rchild == NULL)
+    {
+       AVLTree tmp = T;
+       T = T->lchild;
+       free(tmp); 
+    } 
+    if(T->lchild != NULL && T->rchild != NULL)
+    { 
+       AVLTree cur = T->rchild;
+       while(cur->lchild != NULL)
+       {
+          cur = cur->lchild;
+       }  
+       T->data = cur->data;
+       node->rchild = deleteNode(T->rchild,cur->data);
+    } 
+   }
+  // 删除完成开始调整 
+  if(T == NULL)
+     return T;
+     
+}
