@@ -205,7 +205,7 @@ AVLTree deleteNode(AVLTree T, int key)
 
   int balance = getBalance(T);
   // LL
-  if(balance > 1 && getBlance(T->lchild) > 0)
+  if(balance > 1 && getBlance(T->lchild) >= 0)
     return rightRoat(T);
   // LR
   if(balance > 1 && getBlance(T->lchild) < 0)
@@ -214,7 +214,7 @@ AVLTree deleteNode(AVLTree T, int key)
     return rightRoat(T);
   }
   // RR
-  if(blance < -1 && getBlance(R->rchild) < 0)
+  if(blance < -1 && getBlance(R->rchild) <= 0)
      return leftRoat(T);
   // RL
   if(blance < -1 && getBlance(R->rchild) > 0)
