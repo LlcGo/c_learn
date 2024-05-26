@@ -2,5 +2,7 @@
 
 int main()
 {
-   printf(#include "a.inc");
+   printf(
+       #include "a.inc"
+     );
 }
