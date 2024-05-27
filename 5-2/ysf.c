@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct node{
   int data;
@@ -9,8 +10,27 @@ node * create(int n);
 
 int main(void)
 {
-  create(41);
-  return 0;
+   int n = 41;
+   int m = 3;
+   int i;
+   node *p =  create(41);
+   node * tmp;
+   
+   m %= n;
+   while(p != p->next)
+   {
+     for(i = 1; i < m-1; i++)
+     {
+       p=p->next;
+     }
+     printf("%d->",p->next->data);
+     tmp = p->next;
+     p->next =tmp->next;
+     free(tmp);
+     p = p->next;
+   }
+   printf("%d\n",p->data);
+   return 0;
 }
 
 node * create(int n)
@@ -31,5 +51,6 @@ node * create(int n)
   free(head);
   return new->next;
 } 
+
 
 

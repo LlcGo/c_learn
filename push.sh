@@ -15,5 +15,3 @@ git add -A; #添加所有的更新，.只能添加最新的更新
 git commit -m "${pushmessage}";
 git push -u origin master;
 git push -u github master;
-
-echo “成功”;
