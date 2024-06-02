@@ -61,17 +61,22 @@ static int cmd_si(char * args){
 }
 
 static int cmd_info(char *args) {
-  if(!strcmp(*args,'r'))
+  if(!strcmp(args,"r"))
   {
     isa_reg_display();
   }
-  else if(!strcmp(*args,'w'))
+  else if(!strcmp(args,"w"))
   {
 
   }  
   return 0;
 }
 
+static int cmd_x(char *args){
+  char * slip = strtok(args," ");
+  printf("%p\n",slip);
+  return 0;  
+}
 
 static int cmd_help(char *args);
 
@@ -85,7 +90,7 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
   { "si", "Debug", cmd_si},
   { "info","printf info",cmd_info},
-
+  { "x","N EXPR", cmd_x },
   /* TODO: Add more commands */
 
 };
