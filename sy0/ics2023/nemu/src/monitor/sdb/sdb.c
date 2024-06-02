@@ -75,6 +75,7 @@ static int cmd_info(char *args) {
 static int cmd_x(char *args){
   char * slip = strtok(args," ");
   printf("%s\n",slip);
+  printf("%s\n",slip + 1);
   return 0;  
 }
 
