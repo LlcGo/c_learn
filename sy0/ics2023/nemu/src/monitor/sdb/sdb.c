@@ -55,10 +55,16 @@ static int cmd_q(char *args) {
 
 /*调试*/
 static int cmd_si(char * args){
-	  //printf("调试参数->%c\n",*args);
+ //printf("调试参数->%c\n",*args);
           cpu_exec((*args)-'0');	
 	  return 0;
 }
+
+static int cmd_info(char *args) {
+  isa_reg_display();
+  return 0;
+}
+
 
 static int cmd_help(char *args);
 
@@ -71,6 +77,7 @@ static struct {
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
   { "si", "Debug", cmd_si},
+  { "info","printf info",cmd_info},
 
   /* TODO: Add more commands */
 
