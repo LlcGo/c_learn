@@ -56,7 +56,7 @@ static int cmd_q(char *args) {
 /*调试*/
 static int cmd_si(char * args){
 	  //printf("调试参数->%c\n",*args);
-          cpu_exec(*args);	
+          cpu_exec((*args)-'0');	
 	  return 0;
 }
 
