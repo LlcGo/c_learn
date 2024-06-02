@@ -49,13 +49,14 @@ static int cmd_c(char *args) {
 
 
 static int cmd_q(char *args) {
-  printf("args->%c\n",*args);	
+ printf("args->%c\n",*args);
   return -1;
 }
 
 /*调试*/
 static int cmd_si(char * args){
-	  printf("调试参数->%c\n",*args);
+	  //printf("调试参数->%c\n",*args);
+          cpu_exec(*args);	
 	  return 0;
 }
 
