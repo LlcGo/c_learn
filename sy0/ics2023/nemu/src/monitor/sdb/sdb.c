@@ -89,7 +89,8 @@ static int cmd_x(char *args){
 
 static int cmd_p(char *args){
      bool flag = false;
-     expr(args, &flag);
+     printf("%d\n",expr(args, &flag));
+     //assert(0);
      return 0;	
 }
 
