@@ -21,7 +21,6 @@
  */
 #include <regex.h>
 
-static bool make_token(char *e);
 enum {
   TK_NOTYPE = 256, TK_EQ=1,
   SUB=2,PLUS=3,MUL=4,DIV=5, 
@@ -68,8 +67,6 @@ void init_regex() {
       panic("regex compilation failed: %s\n%s", error_msg, rules[i].regex);
     }
   }
-  char * a = "+-*/()";
-  make_token(a);
 }
 
 typedef struct token {
@@ -159,7 +156,31 @@ word_t expr(char *e, bool *success) {
   }
 
   /* TODO: Insert codes to evaluate the expression. */
-  TODO();
 
   return 0;
 }
+
+bool check_parentheses(int p, int q)
+{
+   if(tokens[p].type != '(' || tokens[q]!= ')')
+	   return false;
+   int l = p, r = q;
+   while(l < r)
+   {
+	   if(tokens[l].type == '(')
+	   {
+		   if(tokens[r].type == ')')
+		   {
+			   l++,r--;
+			   continue;
+		   }
+		   else
+			   r--;
+	   }
+	   else if(tokens[l].type == ')')
+		   return false;
+	   else l++;
+   }
+   return true;
+}
+
