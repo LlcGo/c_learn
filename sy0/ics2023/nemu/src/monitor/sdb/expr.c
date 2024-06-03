@@ -23,8 +23,9 @@
 
 static bool make_token(char *e);
 enum {
-  TK_NOTYPE = 256, TK_EQ,
-
+  TK_NOTYPE = 256, TK_EQ=1,
+  SUB=2,PLUS=3,MUL=4,DIV=5, 
+  ZUO=6,YOU=7  
   /* TODO: Add more token types */
 
 };
@@ -39,8 +40,13 @@ static struct rule {
    */
 
   {" +", TK_NOTYPE},    // spaces
-  {"\\+", '+'},         // plus
+  {"\\+", PLUS},         // plus
   {"==", TK_EQ},        // equal
+  {"\\-",DIV},
+  {"\\*",MUL},
+  {"\\/",DIV},
+  {"\\(", ZUO},
+  {"\\)", YOU}
 };
 
 #define NR_REGEX ARRLEN(rules)
@@ -91,21 +97,47 @@ static bool make_token(char *e) {
         Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
             i, rules[i].regex, position, substr_len, substr_len, substr_start);
 
-	tokens[i].type = i;
-        strcpy(tokens[i].str,substr_start);
         
-	printf("%s\n",tokens[i].str);
         position += substr_len;
           
         /* TODO: Now a new token is recognized with rules[i]. Add codes
          * to record the token in the array `tokens'. For certain types
          * of tokens, some extra actions should be performed.
          */
-
+        Token tmptoken;
         switch (rules[i].token_type) {
-          default: TODO();
+		   case PLUS:
+			   tmptoken.type = '+';
+			   tokens[nr_token++]= tmptoken;
+			   break;
+		   case DIV:
+			   tmptoken.type = '/';
+			   tokens[nr_token++]= tmptoken;
+			   break;
+		   case MUL:
+			   tmptoken.type = '*';
+			   tokens[nr_token++]= tmptoken;
+			   break;
+		   case SUB:
+			   tmptoken.type = '-';
+                           tokens[nr_token++]= tmptoken;
+			   break;
+		   case TK_EQ:
+			   strcpy(tmptoken.str,"==");
+			   tokens[nr_token++]= tmptoken;
+			   break;
+	   	   case ZUO:
+                           tmptoken.type = '(';
+			   tokens[nr_token++] = tmptoken;
+			   break;
+	           case YOU:
+			   tmptoken.type = ')';
+			   tokens[nr_token++] = tmptoken;
+			   break;
+                     default: 
+			   printf("i = %d and No rules is com.\n", i);
+			   break;
         }
-
         break;
       }
     }
