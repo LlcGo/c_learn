@@ -113,19 +113,19 @@ static bool make_token(char *e) {
         Token tmptoken;
         switch (rules[i].token_type) {
 		   case PLUS:
-			   tmptoken.type = '+';
+			   tmptoken.type = PLUS;
 			   tokens[nr_token++]= tmptoken;
 			   break;
 		   case DIV:
-			   tmptoken.type = '/';
+			   tmptoken.type = DIV;
 			   tokens[nr_token++]= tmptoken;
 			   break;
 		   case MUL:
-			   tmptoken.type = '*';
+			   tmptoken.type = MUL;
 			   tokens[nr_token++]= tmptoken;
 			   break;
 		   case DEC:
-			   tmptoken.type = '-';
+			   tmptoken.type = DEC;
                            tokens[nr_token++]= tmptoken;
 			   break;
 		   case TK_EQ:
@@ -271,12 +271,12 @@ uint32_t eval(int p,int q){
 		       flag = true;
 		       op = max(op,i);
 	      }
-	      if(!flag && (tokens[i].type == '+' || tokens[i].type == '-'))
+	      if(!flag && (tokens[i].type == PLUS || tokens[i].type == DEC))
 	      {
 		      flag = true;
 		      op = max(op,i);
 	      }
-	      if(!flag && (tokens[i].type == '*' || tokens[i].type == '/'))
+	      if(!flag && (tokens[i].type == MUL || tokens[i].type == DIV))
 	      {
 		      op = max(op,i);
 	      }
