@@ -68,7 +68,7 @@ void init_regex() {
       panic("regex compilation failed: %s\n%s", error_msg, rules[i].regex);
     }
   }
-  char * a = "+";
+  char * a = "+-*/()";
   make_token(a);
 }
 
