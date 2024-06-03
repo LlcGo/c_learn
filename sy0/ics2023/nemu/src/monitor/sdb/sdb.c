@@ -87,6 +87,12 @@ static int cmd_x(char *args){
 	  return 0;
 }
 
+static int cmd_p(char *args){
+     bool flag = false;
+     expr(args, &flag);
+     return 0;	
+}
+
 static int cmd_help(char *args);
 
 static struct {
@@ -100,6 +106,7 @@ static struct {
   { "si", "Debug", cmd_si},
   { "info","printf info",cmd_info},
   { "x","N EXPR", cmd_x },
+  { "p", "exper", cmd_p }
   /* TODO: Add more commands */
 
 };
