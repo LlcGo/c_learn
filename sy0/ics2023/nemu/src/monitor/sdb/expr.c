@@ -29,6 +29,9 @@ enum {
 
 };
 
+ uint32_t eval(int p,int q);
+
+
 static struct rule {
   const char *regex;
   int token_type;
@@ -135,7 +138,7 @@ static bool make_token(char *e) {
 	           case NUM:
 			   tokens[nr_token].type = NUM;
 	                   strncpy(tokens[nr_token].str, &e[position - substr_len], substr_len);
-	                   nr_tpken++;
+	                   nr_token++;
 	                   break;		   
                      default: 
 			   printf("i = %d and No rules is com.\n", i);
@@ -162,13 +165,15 @@ word_t expr(char *e, bool *success) {
   }
 
   /* TODO: Insert codes to evaluate the expression. */
-  eveal(1,nr_token);
-  return 0;
+  uint32_t res = 0;
+
+  res = eval(0,nr_token-1);
+  return res;
 }
 
 bool check_parentheses(int p, int q)
 {
-   if(tokens[p].type != '(' || tokens[q]!= ')')
+   if(tokens[p].type != '(' || tokens[q].type!= ')')
 	   return false;
    int l = p, r = q;
    while(l < r)
@@ -190,8 +195,12 @@ bool check_parentheses(int p, int q)
    return true;
 }
 
-uint32_t eval(int p,int q)
+int max(int i,int j)
 {
+   return i > j ? i : j;
+}
+
+uint32_t eval(int p,int q){
 	if(p > q){
             assert(0);
 	    return -1;
@@ -209,7 +218,7 @@ uint32_t eval(int p,int q)
 	   bool flag = false;
 	   for(int i = p; i <= q; i++)
 	   {
-              if(token[i].type == '(')
+              if(tokens[i].type == '(')
 	      {
 		      while(tokens[i].type != ')')
 			      i++;
@@ -218,17 +227,17 @@ uint32_t eval(int p,int q)
 		       flag = true;
 		       op = max(op,i);
 	      }
-	      if(!flag && tokens[i].type == '+' || tokens[i].type == '-')
+	      if(!flag && (tokens[i].type == '+' || tokens[i].type == '-'))
 	      {
 		      flag = true;
 		      op = max(op,i);
 	      }
-	      if(!flag && tokens[i].type == '*' || token[i].type == '/')
+	      if(!flag && (tokens[i].type == '*' || tokens[i].type == '/'))
 	      {
 		      op = max(op,i);
 	      }
 	   }
-	}
+	
 	int op_type = tokens[op].type;
 
 	uint32_t val1 = eval(p,op - 1);
@@ -240,15 +249,16 @@ uint32_t eval(int p,int q)
 			return val1 - val2;
 		case '*':
 			return val1 * val2;
+		case TK_EQ:
+		        return val1 == val2;	
 		case '/':
 		        if(val2 == 0){
-				division_zero = true;
-				return 0;
+		        	return 0;
 			}	
 			return val1 / val2;
-		deault:
-			printf("No op type");
+		default:
+			printf("No Op type");
 			assert(0);
 	}
-
+   }
 }
