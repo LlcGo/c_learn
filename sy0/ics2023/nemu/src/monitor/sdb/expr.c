@@ -23,10 +23,10 @@
 
 enum {
   TK_NOTYPE = 256, TK_EQ=1,
-  SUB=2,PLUS=3,MUL=4,DIV=5, 
-  ZUO=6,YOU=7,NUM=8
+  DEC=2,PLUS=3,MUL=4,DIV=5, 
+  ZUO=6,YOU=7,NUM=8,OR=9,AND=10,
+  LEQ=11,NOTEQ=12
   /* TODO: Add more token types */
-
 };
 
  uint32_t eval(int p,int q);
@@ -44,12 +44,17 @@ static struct rule {
   {" +", TK_NOTYPE},    // spaces
   {"\\+", PLUS},         // plus
   {"==", TK_EQ},        // equal
-  {"\\-",DIV},
+  {"\\-",DEC},
   {"\\*",MUL},
   {"\\/",DIV},
   {"\\(", ZUO},
   {"\\)", YOU},
-  {"[0-9]",NUM}
+  {"[0-9]",NUM},
+  {"\\<\\=",LEQ},
+  {"\\!\\=",NOTEQ},
+  {"\\|\\|",OR},
+  {"\\&\\&",AND},
+  {"\\!",'!'}
 };
 
 #define NR_REGEX ARRLEN(rules)
@@ -119,11 +124,12 @@ static bool make_token(char *e) {
 			   tmptoken.type = '*';
 			   tokens[nr_token++]= tmptoken;
 			   break;
-		   case SUB:
+		   case DEC:
 			   tmptoken.type = '-';
                            tokens[nr_token++]= tmptoken;
 			   break;
 		   case TK_EQ:
+			   tmptoken.type = TK_EQ;
 			   strcpy(tmptoken.str,"==");
 			   tokens[nr_token++]= tmptoken;
 			   break;
@@ -135,11 +141,37 @@ static bool make_token(char *e) {
 			   tmptoken.type = ')';
 			   tokens[nr_token++] = tmptoken;
 			   break;
-	           case NUM:
+		   case NUM:
 			   tokens[nr_token].type = NUM;
-	                   strncpy(tokens[nr_token].str, &e[position - substr_len], substr_len);
-	                   nr_token++;
-	                   break;		   
+			   strncpy(tokens[nr_token].str, &e[position - substr_len], substr_len);
+			   nr_token++;
+		           break;
+		   case OR:
+			   tokens[nr_token].type = OR;
+			   strcpy(tokens[nr_token].str,"||");
+			   nr_token++;
+		           break;
+		   case AND:
+			   tokens[nr_token].type = AND;
+			   strcpy(tokens[nr_token].str,"&&");
+			   nr_token++;
+		           break;
+		   case NOTEQ:
+			   tokens[nr_token].type = NOTEQ;
+		           strcpy(tokens[nr_token].str,"!=");
+			   nr_token++;
+			   break;
+		   case '!':
+			   tmptoken.type = '!';
+		           tokens[nr_token++] = tmptoken;		   
+		           break;
+		   case LEQ:
+			   tokens[nr_token].type = LEQ;
+			   strcpy(tokens[nr_token].str,"<=");
+			   nr_token++;
+		           break;
+	           case 256:
+	                  break;		   
                      default: 
 			   printf("i = %d and No rules is com.\n", i);
 			   break;
@@ -197,7 +229,7 @@ bool check_parentheses(int p, int q)
 
 int max(int i,int j)
 {
-   return i > j ? i : j;
+   return (i > j) ? i : j;
 }
 
 uint32_t eval(int p,int q){
@@ -223,7 +255,19 @@ uint32_t eval(int p,int q){
 		      while(tokens[i].type != ')')
 			      i++;
 	      }
-	      if(!flag && tokens[i].type == 4){
+	      if(!flag && tokens[i].type == OR){
+		       flag = true;
+		       op = max(op,i);
+	      }
+	      if(!flag && tokens[i].type == AND){
+		       flag = true;
+		       op = max(op,i);
+	      }
+	      if(!flag && tokens[i].type == LEQ){
+		       flag = true;
+		       op = max(op,i);
+	      }
+	      if(!flag && tokens[i].type == NOTEQ){
 		       flag = true;
 		       op = max(op,i);
 	      }
@@ -243,19 +287,27 @@ uint32_t eval(int p,int q){
 	uint32_t val1 = eval(p,op - 1);
 	uint32_t val2 = eval(op + 1,q);
 	switch(op_type){
-		case '+':
+		case PLUS:
 			return val1 + val2;
-		case '-':
+		case DEC:
 			return val1 - val2;
-		case '*':
+		case MUL:
 			return val1 * val2;
 		case TK_EQ:
 		        return val1 == val2;	
-		case '/':
+		case DIV:
 		        if(val2 == 0){
 		        	return 0;
 			}	
 			return val1 / val2;
+		case LEQ:
+			return val1 <= val2;
+		case NOTEQ:
+			return val1 != val2;
+		case OR:
+			return val1 || val2;
+		case AND:
+		        return val1 && val2;
 		default:
 			printf("No Op type");
 			assert(0);
