@@ -24,7 +24,7 @@
 enum {
   TK_NOTYPE = 256, TK_EQ=1,
   SUB=2,PLUS=3,MUL=4,DIV=5, 
-  ZUO=6,YOU=7  
+  ZUO=6,YOU=7,NUM=8
   /* TODO: Add more token types */
 
 };
@@ -45,7 +45,8 @@ static struct rule {
   {"\\*",MUL},
   {"\\/",DIV},
   {"\\(", ZUO},
-  {"\\)", YOU}
+  {"\\)", YOU},
+  {"[0-9]",NUM}
 };
 
 #define NR_REGEX ARRLEN(rules)
@@ -131,6 +132,11 @@ static bool make_token(char *e) {
 			   tmptoken.type = ')';
 			   tokens[nr_token++] = tmptoken;
 			   break;
+	           case NUM:
+			   tokens[nr_token].type = NUM;
+	                   strncpy(tokens[nr_token].str, &e[position - substr_len], substr_len);
+	                   nr_tpken++;
+	                   break;		   
                      default: 
 			   printf("i = %d and No rules is com.\n", i);
 			   break;
@@ -156,7 +162,7 @@ word_t expr(char *e, bool *success) {
   }
 
   /* TODO: Insert codes to evaluate the expression. */
-
+  eveal(1,nr_token);
   return 0;
 }
 
@@ -184,3 +190,65 @@ bool check_parentheses(int p, int q)
    return true;
 }
 
+uint32_t eval(int p,int q)
+{
+	if(p > q){
+            assert(0);
+	    return -1;
+	}
+	else if(p==q){
+          // 肯定是数字
+	  return atoi(tokens[p].str);
+	}
+	else if(check_parentheses(p,q)==true){
+		return eval(p + 1, q - 1);
+	}
+	else {
+	  /* We should do more things here. */
+	   int op = -1;
+	   bool flag = false;
+	   for(int i = p; i <= q; i++)
+	   {
+              if(token[i].type == '(')
+	      {
+		      while(tokens[i].type != ')')
+			      i++;
+	      }
+	      if(!flag && tokens[i].type == 4){
+		       flag = true;
+		       op = max(op,i);
+	      }
+	      if(!flag && tokens[i].type == '+' || tokens[i].type == '-')
+	      {
+		      flag = true;
+		      op = max(op,i);
+	      }
+	      if(!flag && tokens[i].type == '*' || token[i].type == '/')
+	      {
+		      op = max(op,i);
+	      }
+	   }
+	}
+	int op_type = tokens[op].type;
+
+	uint32_t val1 = eval(p,op - 1);
+	uint32_t val2 = eval(op + 1,q);
+	switch(op_type){
+		case '+':
+			return val1 + val2;
+		case '-':
+			return val1 - val2;
+		case '*':
+			return val1 * val2;
+		case '/':
+		        if(val2 == 0){
+				division_zero = true;
+				return 0;
+			}	
+			return val1 / val2;
+		deault:
+			printf("No op type");
+			assert(0);
+	}
+
+}
