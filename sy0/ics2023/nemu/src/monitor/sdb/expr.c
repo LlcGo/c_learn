@@ -1,4 +1,5 @@
 /***************************************************************************************
+ *
 * Copyright (c) 2014-2022 Zihao Yu, Nanjing University
 *
 * NEMU is licensed under Mulan PSL v2.
@@ -20,6 +21,7 @@
  */
 #include <regex.h>
 
+static bool make_token(char *e);
 enum {
   TK_NOTYPE = 256, TK_EQ,
 
@@ -60,6 +62,8 @@ void init_regex() {
       panic("regex compilation failed: %s\n%s", error_msg, rules[i].regex);
     }
   }
+  char * a = "3+4";
+  make_token(a);
 }
 
 typedef struct token {
