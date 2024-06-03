@@ -31,8 +31,53 @@ static char *code_format =
 "  return 0; "
 "}";
 
+static int choose(int i);
+
+int idex = 0;
+
+static void gen_num(){
+  // buf[idex++] =
+  char i = choose(10) + '0';
+  buf[idex++] = i;
+}
+
+
+static int choose(int i){
+   return rand() % i;
+}
+
+static void gen_rand_op(){
+   int i = choose(4);	
+   switch(i){
+     case 0:
+         buf[idex++] = '*';
+	 break;
+     case 1:
+         buf[idex++] = '-';
+	 break;
+     case 2:
+         buf[idex++] = '/';	 
+	 break;
+     case 3:
+         buf[idex++] = '+';	
+	 break; 
+   }
+}
+
+static void gen(char c)
+{
+    buf[idex++] = c;
+}
+
 static void gen_rand_expr() {
-  buf[0] = '\0';
+	int i;
+	i = choose(3);
+        switch(i)
+	{
+		case 0: gen_num();break;
+	        case 1: gen('(');gen_rand_expr();gen(')');break;
+		default: gen_rand_expr();gen_rand_op();gen_rand_expr();break;
+	}
 }
 
 int main(int argc, char *argv[]) {
@@ -45,7 +90,7 @@ int main(int argc, char *argv[]) {
   int i;
   for (i = 0; i < loop; i ++) {
     gen_rand_expr();
-
+    buf[idex] = '\0';
     sprintf(code_buf, code_format, buf);
 
     FILE *fp = fopen("/tmp/.code.c", "w");
@@ -53,7 +98,7 @@ int main(int argc, char *argv[]) {
     fputs(code_buf, fp);
     fclose(fp);
 
-    int ret = system("gcc /tmp/.code.c -o /tmp/.expr");
+    int ret = system("gcc -g /tmp/.code.c -o /tmp/.expr");
     if (ret != 0) continue;
 
     fp = popen("/tmp/.expr", "r");
@@ -64,6 +109,7 @@ int main(int argc, char *argv[]) {
     pclose(fp);
 
     printf("%u %s\n", result, buf);
+    idex = 0;
   }
   return 0;
 }
