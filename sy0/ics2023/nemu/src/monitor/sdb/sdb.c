@@ -61,6 +61,24 @@ static int cmd_si(char * args){
 	  return 0;
 }
 
+static void watch_point_display()
+{
+	int i;
+	bool flag = true;
+	for(i = 0; i< NR_WP; i++)
+	{
+		if(wp_loop[i].flag)
+		{
+			  printf("Watchpoint.No: %d, expr = \"%s\", old_value = %d, new_value = %d\n", 
+		                 wp_pool[i].NO, wp_pool[i].expr,wp_pool[i].old_value, wp_pool[i].new_value);
+			  flag = false;
+		}
+	}
+	if(flag){
+	  printf("No watchpoint now.\n");
+	}
+}
+
 static int cmd_info(char *args) {
   if(!strcmp(args,"r"))
   {
@@ -68,7 +86,7 @@ static int cmd_info(char *args) {
   }
   else if(!strcmp(args,"w"))
   {
-
+     watch_point_display();
   }  
   return 0;
 }
@@ -97,9 +115,25 @@ static int cmd_p(char *args){
 static int cmd_w(char *args){
       WP * wp =  new_wp();    
       strcpy(wp->exper,args);
-      wp->new_value = 
+      bool flag = false;
+      wp->new_value = expr(args,&flage);
       return 0;	      
 }
+
+static int cmd_d(char *args)
+{
+      int i;
+      int res = atoi(args);
+      for(i = 0; i < NR_WP; i++)
+      {
+      if(wp_pool[i].NO == res)
+        {  
+                free_wp(wp_pool[i]);
+        }
+      }
+
+}
+
 
 static int cmd_help(char *args);
 
@@ -115,7 +149,8 @@ static struct {
   { "info","printf info",cmd_info},
   { "x","N EXPR", cmd_x },
   { "p", "exper", cmd_p },
-  { "w", "watch point", cmd_w}
+  { "w", "watch point", cmd_w},
+  { "d", "delete breakpoint", cmd_d }
   /* TODO: Add more commands */
   
 };
