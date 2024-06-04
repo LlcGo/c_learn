@@ -20,7 +20,7 @@
 typedef struct watchpoint {
   int NO;
   struct watchpoint *next;
-
+  bool flag;
   /* TODO: Add more members if necessary */
 
 } WP;
@@ -28,11 +28,15 @@ typedef struct watchpoint {
 static WP wp_pool[NR_WP] = {};
 static WP *head = NULL, *free_ = NULL;
 
+WP* new_wp();
+void free_wp(WP *wp);
+
 void init_wp_pool() {
   int i;
   for (i = 0; i < NR_WP; i ++) {
     wp_pool[i].NO = i;
     wp_pool[i].next = (i == NR_WP - 1 ? NULL : &wp_pool[i + 1]);
+    wp_pool[i].flag = false;
   }
 
   head = NULL;
@@ -40,4 +44,40 @@ void init_wp_pool() {
 }
 
 /* TODO: Implement the functionality of watchpoint */
+WP* new_wp(){
+   for(WP *tmp = free_; tmp != NULL; tmp = tmp->next)
+   {
+	   if(!tmp->flag)
+	   {
+		   tmp->flag = true;
+		   if(head == NULL){
+		       head = tmp;
+		   }
+		   return tmp;
+	   }
+   }
+   printf("voer max");   
+   assert(0);
+   return NULL;
+}
+void free_wp(WP *wp){
+      if(wp->NO == head->NO){
+	  free_->flag = false;
+	  head = NULL;
+	  printf("Delete watchpoint success.\n")
+	  return;
+      }
+      for(WP *tmp = head; tmp->next != NULL; tmp = tmp->next)
+      {
+	      if(wp->NO = tmp->next->NO)
+	      {
+		   tmp->next = tmp->next->next;   
+		   tmp->next->flag = false;
+		   printf("free success.\n");
+		   return;
+	      }
+      }
+      printf("no wp");
+      assert(0);
+}
 
