@@ -77,3 +77,28 @@ void CreateMGraph(MGraph *G)
 		}
 	}
 }
+
+Boolean visited[MAXVEX]; /*访问标志数组*/
+
+/*深度优先*/
+void DFS(MGraph G, int i)
+{
+  int j;
+  visited[i] = TRUE;
+  printf("%c",G.vexs[i]);
+  for(j = 0; j < G.numVertexes; j++)
+	  if(G.arc[i][j] == 1 && !visited[j])
+		  DFS(G,j); /*对访问的邻接顶点递归调用*/
+}
+
+void DFSTraverse(MGraph G)
+{
+   int i;
+   for(i = 0; i < G.numVertexes; i++)
+       visited[i] = FALSE; //初始化都没有访问过;
+   for(i = 0; i < G.numVertexes; i++)
+	   if(!visited[i])
+		   DFS(G,i);
+}
+
+
