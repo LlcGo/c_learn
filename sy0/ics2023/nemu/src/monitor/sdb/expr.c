@@ -204,7 +204,8 @@ word_t expr(char *e, bool *success) {
 	  {
 		  tokens[i].type =DEREF;
 	  }
-  } 
+  }
+  *success = true; 
   /* TODO: Insert codes to evaluate the expression. */
   uint32_t res = 0;
 
