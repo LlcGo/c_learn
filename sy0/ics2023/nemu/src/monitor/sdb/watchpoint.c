@@ -27,7 +27,7 @@ typedef struct watchpoint {
   int new_value;
 } WP;
 
-static WP wp_pool[NR_WP] = {};
+extern WP wp_pool[NR_WP] = {};
 static WP *head = NULL, *free_ = NULL;
 
 WP* new_wp();
