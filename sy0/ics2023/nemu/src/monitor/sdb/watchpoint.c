@@ -14,24 +14,11 @@
 ***************************************************************************************/
 
 #include "sdb.h"
-
+#include "watchpoint.h"
 #define NR_WP 32
 
-typedef struct watchpoint {
-  int NO;
-  struct watchpoint *next;
-  bool flag;
-  /* TODO: Add more members if necessary */
-  char expr[100];
-  int old_value;
-  int new_value;
-} WP;
 
-extern WP wp_pool[NR_WP] = {};
-static WP *head = NULL, *free_ = NULL;
-
-WP* new_wp();
-void free_wp(WP *wp);
+WP wp_pool[NR_WP] = {};
 
 void init_wp_pool() {
   int i;
@@ -66,12 +53,12 @@ void free_wp(WP *wp){
       if(wp->NO == head->NO){
 	  free_->flag = false;
 	  head = NULL;
-	  printf("Delete watchpoint success.\n")
+	  printf("Delete watchpoint success.\n");
 	  return;
       }
       for(WP *tmp = head; tmp->next != NULL; tmp = tmp->next)
       {
-	      if(wp->NO = tmp->next->NO)
+	      if(wp->NO == tmp->next->NO)
 	      {
 		   tmp->next = tmp->next->next;   
 		   tmp->next->flag = false;

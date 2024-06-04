@@ -13,11 +13,13 @@
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
 
+
+
 #include <cpu/cpu.h>
 #include <cpu/decode.h>
 #include <cpu/difftest.h>
 #include <locale.h>
-#include "/usr/local/c_learn/sy0/ics2023/nemu/src/monitor/sdb/watchpoint.c"
+#include "/usr/local/c_learn/sy0/ics2023/nemu/src/monitor/sdb/watchpoint.h"
 /* The assembly code of instructions executed is only output to the screen
  * when the number of instructions executed is less than this value.
  * This is useful when you use the `si' command.

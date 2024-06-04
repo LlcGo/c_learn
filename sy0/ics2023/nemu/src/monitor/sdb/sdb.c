@@ -19,6 +19,7 @@
 #include <readline/history.h>
 #include "sdb.h"
 #include <memory/paddr.h>
+#include "/usr/local/c_learn/sy0/ics2023/nemu/src/monitor/sdb/watchpoint.h"
 
 static int is_batch_mode = false;
 
@@ -67,7 +68,7 @@ static void watch_point_display()
 	bool flag = true;
 	for(i = 0; i< NR_WP; i++)
 	{
-		if(wp_loop[i].flag)
+		if(wp_pool[i].flag)
 		{
 			  printf("Watchpoint.No: %d, expr = \"%s\", old_value = %d, new_value = %d\n", 
 		                 wp_pool[i].NO, wp_pool[i].expr,wp_pool[i].old_value, wp_pool[i].new_value);
@@ -114,9 +115,9 @@ static int cmd_p(char *args){
 
 static int cmd_w(char *args){
       WP * wp =  new_wp();    
-      strcpy(wp->exper,args);
+      strcpy(wp->expr,args);
       bool flag = false;
-      int tmp = expr(args,&flage);
+      int tmp = expr(args,&flag);
       if(flag)
       {
 	      wp->new_value = tmp;
@@ -125,7 +126,7 @@ static int cmd_w(char *args){
       {
 	      printf("创建watchpoint的时候expr求值出现问题\n");
       }
-       printf("Create watchpoint No.%d success.\n", p->NO);
+       printf("Create watchpoint No.%d success.\n", wp->NO);
       return 0;	      
 }
 
@@ -137,10 +138,10 @@ static int cmd_d(char *args)
       {
       if(wp_pool[i].NO == res)
         {  
-                free_wp(wp_pool[i]);
+                free_wp(&wp_pool[i]);
         }
       }
-
+      return 0;
 }
 
 
