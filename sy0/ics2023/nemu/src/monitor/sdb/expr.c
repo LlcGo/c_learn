@@ -209,6 +209,7 @@ word_t expr(char *e, bool *success) {
   uint32_t res = 0;
 
   res = eval(0,nr_token-1);
+  printf("值-->%d\n",res);
   return res;
 }
 
