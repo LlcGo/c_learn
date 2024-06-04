@@ -94,6 +94,13 @@ static int cmd_p(char *args){
      return 0;	
 }
 
+static int cmd_w(char *args){
+      WP * wp =  new_wp();    
+      strcpy(wp->exper,args);
+      wp->new_value = 
+      return 0;	      
+}
+
 static int cmd_help(char *args);
 
 static struct {
@@ -107,9 +114,10 @@ static struct {
   { "si", "Debug", cmd_si},
   { "info","printf info",cmd_info},
   { "x","N EXPR", cmd_x },
-  { "p", "exper", cmd_p }
+  { "p", "exper", cmd_p },
+  { "w", "watch point", cmd_w}
   /* TODO: Add more commands */
-
+  
 };
 
 #define NR_CMD ARRLEN(cmd_table)

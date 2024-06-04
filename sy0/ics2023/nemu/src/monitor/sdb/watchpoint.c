@@ -22,7 +22,9 @@ typedef struct watchpoint {
   struct watchpoint *next;
   bool flag;
   /* TODO: Add more members if necessary */
-
+  char expr[100];
+  int old_value;
+  int new_value;
 } WP;
 
 static WP wp_pool[NR_WP] = {};
