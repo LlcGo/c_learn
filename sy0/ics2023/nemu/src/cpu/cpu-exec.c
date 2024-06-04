@@ -38,6 +38,23 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 #endif
   if (g_print_step) { IFDEF(CONFIG_ITRACE, puts(_this->logbuf)); }
   IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
+  int i;
+  for(i = 0; i < NR_WP; i++)
+  {
+      if(wp_pool[i].flag && wp_pool[i].exper)
+      {
+	      int res = expr(wp_pool[i].exper,&flage);
+	      if(wp_pool[i].new_value != res){
+		 wp_pool[i].old_value = wp_pool[i].new_value;
+	         wp_pool[i].new_value = res;	 
+	         printf("old value  %d\n",wp_pool[i].old_value);
+	         printf("new value  %d\n",wp_pool[i].new_value);
+		 nemu_state.state = NEMU_STOP;
+		 sdb_mainloop();
+	      }
+	      
+      }
+  }
 }
 
 static void exec_once(Decode *s, vaddr_t pc) {
