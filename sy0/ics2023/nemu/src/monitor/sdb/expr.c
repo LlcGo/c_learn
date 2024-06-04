@@ -25,7 +25,7 @@ enum {
   TK_NOTYPE = 256, TK_EQ=1,
   DEC=2,PLUS=3,MUL=4,DIV=5, 
   ZUO=6,YOU=7,NUM=8,OR=9,AND=10,
-  LEQ=11,NOTEQ=12
+  LEQ=11,NOTEQ=12,DEREF=13
   /* TODO: Add more token types */
 };
 
@@ -195,7 +195,16 @@ word_t expr(char *e, bool *success) {
     *success = false;
     return 0;
   }
-
+  int i;
+  for(i = 0; i < nr_token; i++)
+  {
+	  if(tokens[i].type == '*' && (i == 0 || tokens[i-1].type == PLUS 
+				  || tokens[i-1].type == DEC || tokens[i-1].type == MUL
+				  || tokens[i-1].type == DIV ))
+	  {
+		  tokens[i].type =DEREF;
+	  }
+  } 
   /* TODO: Insert codes to evaluate the expression. */
   uint32_t res = 0;
 
