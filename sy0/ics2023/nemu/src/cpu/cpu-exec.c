@@ -41,21 +41,39 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
   int i;
   for(i = 0; i < NR_WP; i++)
   {
-      if(wp_pool[i].flag && wp_pool[i].exper)
-      {
-	      int res = expr(wp_pool[i].exper,&flage);
-	      if(wp_pool[i].new_value != res){
-		 wp_pool[i].old_value = wp_pool[i].new_value;
-	         wp_pool[i].new_value = res;	 
-	         printf("old value  %d\n",wp_pool[i].old_value);
-	         printf("new value  %d\n",wp_pool[i].new_value);
-		 nemu_state.state = NEMU_STOP;
-		 sdb_mainloop();
-	      }
-	      
-      }
-  }
-}
+      //if(wp_pool[i].flag && !strcmp(wp_pool[i].exper,args))
+      //{
+//	      int res = expr(wp_pool[i].exper,&flage);
+//	      if(wp_pool[i].new_value != res){
+//		 wp_pool[i].old_value = wp_pool[i].new_value;
+//	         wp_pool[i].new_value = res;	 
+//	         printf("old value  %d\n",wp_pool[i].old_value);
+//	         printf("new value  %d\n",wp_pool[i].new_value);
+//		 nemu_state.state = NEMU_STOP;
+//		 sdb_mainloop();
+//	      }
+    if(wp_pool[i].flag)
+    {
+	    bool success = false;
+	    int tmp = expr(wp_pool[i].expr,&success);
+	    if(success)
+	    {
+		  if(tmp != wp_pool[i].new_value)
+		  {
+			  nemu_state.state = NEMU_STOP;
+			  printf("NO EQ\n");
+			  return;
+		  }
+	    }
+	    else
+	    {
+		    printf("expr error. \n");
+		    assert(0);
+	    }
+    }	    
+   }
+ }
+
 
 static void exec_once(Decode *s, vaddr_t pc) {
   s->pc = pc;

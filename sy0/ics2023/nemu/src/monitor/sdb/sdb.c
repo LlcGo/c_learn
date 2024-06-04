@@ -116,7 +116,16 @@ static int cmd_w(char *args){
       WP * wp =  new_wp();    
       strcpy(wp->exper,args);
       bool flag = false;
-      wp->new_value = expr(args,&flage);
+      int tmp = expr(args,&flage);
+      if(flag)
+      {
+	      wp->new_value = tmp;
+      }
+      else
+      {
+	      printf("创建watchpoint的时候expr求值出现问题\n");
+      }
+       printf("Create watchpoint No.%d success.\n", p->NO);
       return 0;	      
 }
 
