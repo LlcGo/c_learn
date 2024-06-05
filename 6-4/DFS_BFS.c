@@ -35,6 +35,13 @@ Status InitQueue(Queue *Q)
 	return OK;
 }
 
+Status QueueEmpty(Queue Q)
+{
+	if(Q.front == Q.rear)
+		return TRUE;
+	else
+		return FALSE;
+}
 
 
 
