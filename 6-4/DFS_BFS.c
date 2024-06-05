@@ -50,8 +50,18 @@ Status EnQueue(Queue *Q,int e)
 		return ERROR;
 	}
 	Q->data[Q->rear] = e;
-	Q->rear = (Q->rear + 1)%MAXSIZE;
+	Q->rear = (Q->rear + 1) % MAXSIZE;
 	return OK;
+}
+
+Status DeQueue(Queue *Q,int *e)
+{
+	if(QueueEmpty(*Q))
+	{
+		return FALSE;
+	}
+	*e =  Q->data[Q->front];
+        Q->front = (Q->front + 1) % MAXSIZE;
 }
 
 void CreateMGraph(MGraph *G)
