@@ -43,7 +43,16 @@ Status QueueEmpty(Queue Q)
 		return FALSE;
 }
 
-
+Status EnQueue(Queue *Q,int e)
+{
+	if((Q->rear+1)%MAXSIZE == Q->front)
+	{
+		return ERROR;
+	}
+	Q->data[Q->rear] = e;
+	Q->rear = (Q->rear + 1)%MAXSIZE;
+	return OK;
+}
 
 void CreateMGraph(MGraph *G)
 {
