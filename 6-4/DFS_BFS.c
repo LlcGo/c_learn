@@ -21,6 +21,23 @@ typedef struct
 }MGRaph;
 
 
+typedef struct
+{
+	int data[MAXSIZE];
+	int front
+	int rear;
+}Queue;
+
+Status InitQueue(Queue *Q)
+{
+	Q->front = 0;
+	Q->rear = 0;
+	return OK;
+}
+
+
+
+
 void CreateMGraph(MGraph *G)
 {
 	int i, j;
