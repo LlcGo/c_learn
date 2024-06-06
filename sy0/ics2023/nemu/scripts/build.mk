@@ -40,7 +40,7 @@ $(OBJ_DIR)/%.o: %.cc
 	@echo + CXX $<
 	@mkdir -p $(dir $@)
 	@$(CXX) $(CFLAGS) $(CXXFLAGS) -c -o $@ $<
-	@$(CC) $(CFLAGS) $(CXXFLAGS)-E -MF /dev/null $< | grep -ve '^#' | \
+	@$(CC) $(CFLAGS) $(CXXFLAGS) -E -MF /dev/null $< | grep -ve '^#' | \
                clang-format - >  $(basename $@).i
 	$(call call_fixdep, $(@:.o=.d), $@)
 
