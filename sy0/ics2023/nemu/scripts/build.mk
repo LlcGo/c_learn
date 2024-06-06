@@ -40,7 +40,9 @@ $(OBJ_DIR)/%.o: %.cc
 	@$(CXX) $(CFLAGS) $(CXXFLAGS) -c -o $@ $<
 	$(call call_fixdep, $(@:.o=.d), $@)
 
-$(OBJ_DIR)/%.o: src/%.c
+$(OBJ_DIR)/%.o: %.c
+	@echo + CII $<
+	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(SO_CFLAGS) -c -o $@ $<
 	@$(CC) $(CFLAGS) $(CXXFLAGS) -E -MF /dev/null $< | \
 	       grep -ve '^#' | \
