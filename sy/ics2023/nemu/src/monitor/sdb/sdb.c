@@ -19,7 +19,7 @@
 #include <readline/history.h>
 #include "sdb.h"
 #include <memory/paddr.h>
-#include "/usr/local/c_learn/sy0/ics2023/nemu/src/monitor/sdb/watchpoint.h"
+#include "/usr/local/c_learn/sy/ics2023/nemu/src/monitor/sdb/watchpoint.h"
 
 static int is_batch_mode = false;
 
