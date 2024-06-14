@@ -32,7 +32,19 @@ char *strncpy(char *dst, const char *src, size_t n) {
 }
 
 char *strcat(char *dst, const char *src) {
-  panic("Not implemented");
+	char *dstt = dst;
+	const char *srct = src;
+	while((*dstt) != '\0')
+	{
+		dstt++;
+	}
+	while((*srct) != '\0')
+	{
+		*dstt = (*srct);
+	        dstt++;
+	        srct++;   	
+	}
+	return dst;
 }
 
 int strcmp(const char *s1, const char *s2) {
