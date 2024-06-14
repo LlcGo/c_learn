@@ -6,16 +6,25 @@
 
 size_t strlen(const char *s) {
     size_t i = 0;
-    while((*s) != '\0')
+    const char * sp = s;
+    while((*sp) != '\0')
     {
 	    i++;
-	    s++;
+	    sp++;
     }
     return i;
 }
 
 char *strcpy(char *dst, const char *src) {
-  panic("Not implemented");
+	char * dt = dst;
+	const char *srct = src;
+	while((*srct) != '\0')
+	{
+            *dst = (*srct);
+	    dst++;
+            srct++;	    
+	}
+	return dst;
 }
 
 char *strncpy(char *dst, const char *src, size_t n) {
