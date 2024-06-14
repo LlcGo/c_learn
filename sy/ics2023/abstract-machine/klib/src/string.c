@@ -74,9 +74,9 @@ void *memset(void *s, int c, size_t n) {
 	while(n != 0)
 	{
 		n--;
-		st++ = (char)c;
+		*st++ = c;
 	}	
-	return (void*)s;
+	return s;
 }
 
 void *memmove(void *dst, const void *src, size_t n) {
@@ -88,18 +88,12 @@ void *memcpy(void *out, const void *in, size_t n) {
 }
 
 int memcmp(const void *s1, const void *s2, size_t n) {
-        const void *s1t = s1;
-	const void *s2t = s2;
-	while(n != 0)
-	{
-           if((*s1t) != (*s2t))
-	   {
-		   return 1;
-	   }
-	   s1t++;
-	   s2t++;
-	}
-	return 0;
+         const unsigned char *su1, *su2;
+	int res = 0;
+	for (su1 = s1, su2 = s2; 0 < n; su1++, su2++, n--)
+		if ((res = *su1 - *su2) != 0)
+			break;
+	return res;
 }
 
 #endif
