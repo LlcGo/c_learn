@@ -48,11 +48,11 @@ char *strcat(char *dst, const char *src) {
 }
 
 int strcmp(const char *s1, const char *s2) {
-     size_t s1len = strlen(s1);
-     size_t s2len = strlen(s2);
+    // size_t s1len = strlen(s1);
+    // size_t s2len = strlen(s2);
      const char *s1p = s1;
      const char *s2p = s2;
-     if(s1len != s2len) return 1;
+    // if(s1len != s2len) return 1;
      while((*s1p) != '\0')
      {
 	  if((*s1p)!=(*s2p))
