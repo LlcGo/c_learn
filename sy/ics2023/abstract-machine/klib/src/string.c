@@ -24,6 +24,7 @@ char *strcpy(char *dst, const char *src) {
 	    dt++;
             srct++;	    
 	}
+	*dt = *srct;
 	return dst;
 }
 
