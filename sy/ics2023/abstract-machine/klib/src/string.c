@@ -20,8 +20,8 @@ char *strcpy(char *dst, const char *src) {
 	const char *srct = src;
 	while((*srct) != '\0')
 	{
-            *dst = (*srct);
-	    dst++;
+            *dt = (*srct);
+	    dt++;
             srct++;	    
 	}
 	return dst;
