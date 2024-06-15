@@ -44,6 +44,7 @@ char *strcat(char *dst, const char *src) {
 	        dstt++;
 	        srct++;   	
 	}
+	*dstt = '\0';
 	return dst;
 }
 
