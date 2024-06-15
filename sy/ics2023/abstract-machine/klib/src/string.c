@@ -33,19 +33,17 @@ char *strncpy(char *dst, const char *src, size_t n) {
 }
 
 char *strcat(char *dst, const char *src) {
-	char *dstt = dst;
 	const char *srct = src;
-	while((*dstt) != '\0')
-	{
-		dstt++;
+        char* p = dst;			//将目的数组赋给p
+	while (*p != '\0'){		//循环看大小
+		p++;
 	}
-	while((*srct) != '\0')
-	{
-		*dstt = (*srct);
-	        dstt++;
-	        srct++;   	
+	while (*srct != '\0'){			//注意指针的用法
+		*p = *srct;
+		p++;			//依次加加进行连接
+		srct++;
 	}
-	*dstt = '\0';
+	*p = '\0';
 	return dst;
 }
 
