@@ -11,14 +11,14 @@ ItraceNode iringbuf[MAX_IRINGBUF];
 int p_cur = 0;
 bool full =false;
 
-void trace_inst(word_t pc,uint32_t inst){
+extern void trace_inst(word_t pc,uint32_t inst){
    iringbuf[p_cur].pc = pc;
    iringbuf[p_cur].inst = inst;
    p_cur = (p_cur+1) % MAX_IRINGBUF;
    full = full || p_cur == 0;
 }
 
-void display_inst(){
+extern void display_inst(){
 	if(!full && !p_cur)return;
 	int end = p_cur;
 	int i = full ? p_cur : 0;
@@ -26,7 +26,7 @@ void display_inst(){
 	void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
 	char buf[128];
 	char *p;
-	Statement("Most recently executed instructions");
+	printf("Most recently executed instructions");
 
 	do{
 		p = buf;

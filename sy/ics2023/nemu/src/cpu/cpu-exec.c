@@ -20,6 +20,7 @@
 #include <cpu/difftest.h>
 #include <locale.h>
 #include "/usr/local/c_learn/sy/ics2023/nemu/src/monitor/sdb/watchpoint.h"
+#include "/usr/local/c_learn/sy/ics2023/nemu/src/utils/itrace.c"
 /* The assembly code of instructions executed is only output to the screen
  * when the number of instructions executed is less than this value.
  * This is useful when you use the `si' command.
