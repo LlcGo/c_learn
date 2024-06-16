@@ -57,7 +57,7 @@ int strcmp(const char *s1, const char *s2) {
      {
 	  if((*s1p)!=(*s2p))
 	  {
-		  return 1;
+		  return -1;
 	  }	  
 	  s1p++;
 	  s2p++;
