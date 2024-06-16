@@ -1,7 +1,7 @@
 #include <klib.h>
 #include <klib-macros.h>
 #include <stdint.h>
-
+#include <assert.h>
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
 size_t strlen(const char *s) {
@@ -24,7 +24,7 @@ char *strcpy(char *dst, const char *src) {
 	    dt++;
             srct++;	    
 	}
-	*dt = *srct;
+	*dt = '\0';
 	return dst;
 }
 
