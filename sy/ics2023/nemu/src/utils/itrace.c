@@ -18,6 +18,14 @@ extern void trace_inst(word_t pc,uint32_t inst){
    full = full || p_cur == 0;
 }
 
+extern void display_pread(paddr_t addr, int len) {
+  printf("pread at " FMT_PADDR " len=%d\n", addr, len);
+}
+
+extern void display_pwrite(paddr_t addr, int len, word_t data) {
+  printf("pwrite at " FMT_PADDR " len=%d, data=" FMT_WORD "\n", addr, len, data);
+}
+
 extern void display_inst(){
 	if(!full && !p_cur)return;
 	int end = p_cur;
