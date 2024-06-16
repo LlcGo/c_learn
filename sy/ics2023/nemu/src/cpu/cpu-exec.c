@@ -20,7 +20,6 @@
 #include <cpu/difftest.h>
 #include <locale.h>
 #include "/usr/local/c_learn/sy/ics2023/nemu/src/monitor/sdb/watchpoint.h"
-#include "/usr/local/c_learn/sy/ics2023/nemu/src/utils/itrace.c"
 /* The assembly code of instructions executed is only output to the screen
  * when the number of instructions executed is less than this value.
  * This is useful when you use the `si' command.
@@ -129,6 +128,7 @@ static void statistic() {
   else Log("Finish running in less than 1 us and can not calculate the simulation frequency");
 }
 
+void display_inst();
 void assert_fail_msg() {
   display_inst();
   isa_reg_display();
