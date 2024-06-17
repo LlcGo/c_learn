@@ -120,7 +120,7 @@ INSTPAT_START();
 
   return 0;
 }
-
+void trace_inst();
 int isa_exec_once(Decode *s) {
   s->isa.inst.val = inst_fetch(&s->snpc, 4);
   IFDEF(CONFIG_ITRACE, trace_inst(s->pc, s->isa.inst.val));
