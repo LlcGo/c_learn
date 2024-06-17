@@ -4,6 +4,16 @@
 #include <assert.h>
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
+size_t strnlen(const char *s, size_t n)
+{
+  size_t cnt = 0;
+  while (cnt < n && *s++ != '\0')
+  {
+    cnt++;
+  }
+  return cnt;
+}
+
 size_t strlen(const char *s) {
     size_t i = 0;
     const char * sp = s;
