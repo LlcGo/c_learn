@@ -11,9 +11,9 @@ typedef struct graph
 
 Graph * initGraph(int vexNum)
 {
-   G  g = (G)malloc(sizeof(Graph));
+   Graph*  g = (G)malloc(sizeof(Graph));
    g->vexs = (char*)malloc(sizeof(char) * vexNum);
-   g->arcs = (int**)malloc(sizeof(int)*vexNum);
+   g->arcs = (int**)malloc(sizeof(int*)*vexNum);
    for (int i = 0; i < vexNum; i++)
    {
        g->arcs[i] = (int*)malloc(sizeof(int) * vexNum);
@@ -36,7 +36,6 @@ void creatGraph(G g, char *vex, int * arcs)
                 g->arcsNum++;
             }
         }
-        
     }
     g->arcsNum /= 2;
 }
@@ -57,6 +56,11 @@ void DFS(G g, int* visited, int index)
 int main()
 {
     G g = initGraph(5);
+    int * visited = (int*)malloc(sizeof(int) * g->vexNum);
+    for(int i = 0; i < g->vexNum; i++)
+    {
+        visited[i] = 0;
+    }
     int arcs[5][5] = {
         0,1,1,1,0,
         1,0,1,1,1,
@@ -64,6 +68,8 @@ int main()
         1,1,0,0,1,
         0,1,0,1,0
     };
-    creatGraph(g,"ABCDE",(int*)arcs);
+   creatGraph(g,"ABCDE",(int*)arcs);
+    DFS(g,visited,0);
+    printf("\n");
     return 0;
 }
