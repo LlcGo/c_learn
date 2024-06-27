@@ -59,15 +59,13 @@ void prim(G g,int index)
         // 跟新内容
         for (size_t j = 0; j < g->vexNum; j++)
         {
-            if(g->arcs[minIndex][j] < e[j].weight)
+            if(e[j].weight > g->arcs[minIndex][j])
             {
                 e[j].weight = g->arcs[minIndex][j];
                 e[j].vex = g->vexs[minIndex];
             }
         }
-        
    }
-   
 }
 
 Graph * initGraph(int vexNum)
