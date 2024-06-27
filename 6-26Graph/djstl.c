@@ -156,7 +156,7 @@ int getMin(int *d,int *s,G g)
 {
     int min = MAX;
     int index;
-    for(int i = 0; i < g->arcsNum; i++)
+    for(int i = 0; i < g->vexNum; i++)
     {
         if(d[i] < min && !s[i])
         {
@@ -167,9 +167,8 @@ int getMin(int *d,int *s,G g)
     return index;
 }
 
-void dijkstra(G g)
+void dijkstra(G g,int index)
 {
-    int index = 1;
     int * s = (int*)malloc(sizeof(int) * g->vexNum);
     int * p = (int*)malloc(sizeof(int) * g->vexNum);
     int * d = (int*)malloc(sizeof(int) * g->vexNum);
@@ -243,9 +242,9 @@ int main()
         16,7,6,MAX,2,0,9,
         14,MAX,MAX,MAX,8,9,0
     };
-    creatGraph(g,"123456",(int*)arcs);
+    creatGraph(g,"1234567",(int*)arcs);
     DFS(g,visited,0);
     printf("\n");
-    dijkstra(g);
+    dijkstra(g,0);
     return 0;
 }
