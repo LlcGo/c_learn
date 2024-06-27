@@ -59,6 +59,10 @@ void prim(G g,int index)
         // 跟新内容
         for (size_t j = 0; j < g->vexNum; j++)
         {
+            // 0 6 1 5 MAX MAX  
+            // 0 6 0 5 MAX MAX
+            // 0 6 0 5 MAX MAX // 1,5,0, 5, 6, 4,
+            // 0 5 0 5 6   4
             if(e[j].weight > g->arcs[minIndex][j])
             {
                 e[j].weight = g->arcs[minIndex][j];
