@@ -24,30 +24,72 @@ Edge * initEdge(G g){
     int index = 0;
     for(int i = 0; i < g->vexNum; i++)
     {
-        for (size_t j = 0; j < g->vexNum; j++)
+        for (size_t j = i + 1; j < g->vexNum; j++)
         {
-           e[index].start = i;
-           e[index].end = j;
-           e[index].weight = g->arcs[i][j];
-           index++;
+            if(g->arcs[i][j] != MAX)
+            {
+                e[index].start = i;
+                e[index].end = j;
+                e[index].weight = g->arcs[i][j];
+                index++;
+            }
         }
     }
     return e;
 }
 
-
-/**
- * 当weight为0时候代表添加到集合中
- */
-Edge * initEdge(G g,int index){
-     Edge * e = (Edge*)malloc(sizeof(Edge) * g->vexNum);
-     for (int i = 0; i < g->vexNum; i++)
-     {
-        e[i].vex = g->vexs[index];
-        e[i].weight = g->arcs[index][i];
-     }
-     return e;
+void sortEdge(Edge * edge, G g)
+{
+    Edge tmp;
+    for(int i = 0; i < g->arcsNum - 1; i++)
+    {
+        for(int j = 0; j < g->arcsNum - i - 1; j++)
+        {
+            if(edge[j].weight > edge[j + 1].weight)
+            {
+                    tmp = edge[j];
+                    edge[j] = edge[j+1];
+                    edge[j+1] = tmp;
+            }
+        }
+    }
 }
+
+
+void kruskal(G g)
+{
+     int *connected = (int*)malloc(sizeof(int) * g->vexNum);
+     for(int i = 0; i < g->vexNum; i++)
+     {
+        // 每一个都是和自己连通的连通分量；
+        // 0 1 2 3 4 5 
+        connected[i] = i;
+     }
+     Edge * e = initEdge(g);
+     sortEdge(e,g);
+     for (size_t i = 0; i < g->arcsNum; i++)
+     {
+        // e[0].start 边的起点  e[0].end 边的终点 他们的联通分量 
+        int start = connected[e[i].start];
+        int end = connected[e[i].end];
+        //是否不通
+        if(start != end)
+        {
+           printf("v%c--->v%c   weight--->%d\n",g->vexs[e[i].start],g->vexs[e[i].end],e[i].weight);
+           // 更新连通分量
+           for(int j = 0; j < g->vexNum; j++)
+           {
+            // 从头到尾遍历 找到 这条边的尾结点 将当前的连通分量变成起始的联通分量
+            if(connected[j] == end)
+            {
+                connected[j] = start;
+            }
+           }
+        }
+     }
+     
+}
+
 
 int getMinEdge(G g, Edge * e)
 {
@@ -64,32 +106,7 @@ int getMinEdge(G g, Edge * e)
     return index;
 }
 
-void prim(G g,int index)
-{
-   // 生成第一列矩阵的所有边 将第一条边加入集合
-   Edge * e = initEdge(g,0);
-   //已经加入一条边少循环一次
-   for (size_t i = 0; i < g->vexNum - 1; i++)
-   {
-        // 获得最小边的索引
-        int minIndex = getMinEdge(g,e);
-        printf("v%c--->v%c   weight--->%d\n",e[minIndex].vex,g->vexs[minIndex],e[minIndex].weight);
-        e[minIndex].weight = 0;
-        // 跟新内容
-        for (size_t j = 0; j < g->vexNum; j++)
-        {
-            // 0 6 1 5 MAX MAX  
-            // 0 6 0 5 MAX MAX
-            // 0 6 0 5 MAX MAX // 1,5,0, 5, 6, 4,
-            // 0 5 0 5 6   4
-            if(e[j].weight > g->arcs[minIndex][j])
-            {
-                e[j].weight = g->arcs[minIndex][j];
-                e[j].vex = g->vexs[minIndex];
-            }
-        }
-   }
-}
+
 
 Graph * initGraph(int vexNum)
 {
@@ -153,9 +170,9 @@ int main()
         MAX,3,6,MAX,0,6,
         MAX,MAX,4,2,6,0
     };
-   creatGraph(g,"123456",(int*)arcs);
+    creatGraph(g,"123456",(int*)arcs);
     DFS(g,visited,0);
     printf("\n");
-    prim(g,0);
+    kruskal(g);
     return 0;
 }
