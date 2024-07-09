@@ -87,7 +87,6 @@ void kruskal(G g)
            }
         }
      }
-     
 }
 
 

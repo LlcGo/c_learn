@@ -1,4 +1,6 @@
 #include <common.h>
+#include <stdint.h>
+#include <am.h>
 freenode_t *head;
 freenode_t *head_page;
 void *page_store;
@@ -306,6 +308,7 @@ static void kfree(void *ptr)
 
 #ifndef TEST
 // 框架代码中的 pmm_init (在 AbstractMachine 中运行)
+
 static void pmm_init()
 {
 	//初始化堆：地址从低往高

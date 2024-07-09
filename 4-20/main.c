@@ -3,6 +3,9 @@
 int count;
 extern void lookCount();
 
+i
+
+
 int main()
 {
   count = 5;
